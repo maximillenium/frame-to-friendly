@@ -362,9 +362,9 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3">
         <div className="space-y-3 text-sm text-muted-foreground">
           <Logo />
-          <a href="tel:+74996734401" className="flex items-center gap-2 text-foreground hover:text-primary"><Phone className="h-4 w-4 text-primary" /> +7 (499) 673-44-01</a>
-          <div className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" /> Москва, ул. Октябрьская, 36 (м. Марьина Роща)</div>
-          <a href="mailto:info@biostom.ru" className="flex items-center gap-2 hover:text-primary"><Mail className="h-4 w-4 text-primary" /> info@biostom.ru</a>
+          <a href="tel:+74996734401" className="flex items-center gap-2 text-foreground hover:text-primary"><Phone className="h-4 w-4 text-primary" /><span>+7 (499) 673-44-01</span></a>
+          <div className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" /><span>Москва, ул. Октябрьская, 36 (м. Марьина Роща)</span></div>
+          <a href="mailto:info@biostom.ru" className="flex items-center gap-2 hover:text-primary"><Mail className="h-4 w-4 text-primary" /><span>info@biostom.ru</span></a>
         </div>
         <div className="overflow-hidden rounded-2xl border border-border bg-muted">
           <iframe
