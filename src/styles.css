@@ -147,3 +147,14 @@
     color: var(--color-foreground);
   }
 }
+
+@theme inline {
+  --color-primary-soft: var(--primary-soft);
+  --color-surface: var(--surface);
+  --color-hero-bg: var(--hero-bg);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+}
