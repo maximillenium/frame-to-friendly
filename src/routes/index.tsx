@@ -258,10 +258,10 @@ function Doctor() {
 
 function Results() {
   const cases = [
-    { t: "Имплантация", d: "Полное восстановление жевательной функции", s: "3 месяца" },
-    { t: "Виниры E.max", d: "Эстетика и естественный результат", s: "5 дней" },
-    { t: "Реставрация зубов", d: "Восстановление формы и цвета зубов", s: "1 день" },
-    { t: "Отбеливание", d: "Безопасное отбеливание с длительным эффектом", s: "1 час" },
+    { t: "Имплантация", d: "Полное восстановление жевательной функции", s: "3 месяца", before: c1b, after: c1a },
+    { t: "Виниры E.max", d: "Эстетика и естественный результат", s: "5 дней", before: c2b, after: c2a },
+    { t: "Реставрация зубов", d: "Восстановление формы и цвета зубов", s: "1 день", before: c3b, after: c3a },
+    { t: "Отбеливание", d: "Безопасное отбеливание с длительным эффектом", s: "1 час", before: c4b, after: c4a },
   ];
   return (
     <section className="bg-surface py-16">
@@ -277,10 +277,12 @@ function Results() {
           {cases.map((c) => (
             <div key={c.t} className="overflow-hidden rounded-2xl border border-border bg-card p-3">
               <div className="grid grid-cols-2 gap-2">
-                <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
+                <div className="relative aspect-square overflow-hidden rounded-lg">
+                  <img src={c.before} alt={`${c.t} — до`} loading="lazy" width={512} height={512} className="h-full w-full object-cover" />
                   <span className="absolute left-2 top-2 rounded-full bg-background/90 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">до</span>
                 </div>
-                <div className="relative aspect-square overflow-hidden rounded-lg bg-primary-soft">
+                <div className="relative aspect-square overflow-hidden rounded-lg">
+                  <img src={c.after} alt={`${c.t} — после`} loading="lazy" width={512} height={512} className="h-full w-full object-cover" />
                   <span className="absolute left-2 top-2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-medium text-primary-foreground">после</span>
                 </div>
               </div>
