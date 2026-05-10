@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Phone, MapPin, Mail, Clock, Check, ChevronLeft, ChevronRight,
-  Smile, Shield, Star, Sparkles, Users, Cpu, Stethoscope, HeartPulse,
+  Smile, Star, Sparkles, Users, Cpu, Stethoscope, HeartPulse,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import doctor from "@/assets/doctor.jpg";
@@ -394,7 +394,6 @@ function Index() {
       <Header />
       <main>
         <Hero />
-        <Stats />
         <Why />
         <Services />
         <Doctor />
