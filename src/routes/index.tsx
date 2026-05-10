@@ -14,6 +14,14 @@ import sHygiene from "@/assets/service-hygiene.jpg";
 import a1 from "@/assets/avatar1.jpg";
 import a2 from "@/assets/avatar2.jpg";
 import a3 from "@/assets/avatar3.jpg";
+import c1b from "@/assets/case1-before.jpg";
+import c1a from "@/assets/case1-after.jpg";
+import c2b from "@/assets/case2-before.jpg";
+import c2a from "@/assets/case2-after.jpg";
+import c3b from "@/assets/case3-before.jpg";
+import c3a from "@/assets/case3-after.jpg";
+import c4b from "@/assets/case4-before.jpg";
+import c4a from "@/assets/case4-after.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
