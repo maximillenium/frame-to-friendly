@@ -14,6 +14,14 @@ import sHygiene from "@/assets/service-hygiene.jpg";
 import a1 from "@/assets/avatar1.jpg";
 import a2 from "@/assets/avatar2.jpg";
 import a3 from "@/assets/avatar3.jpg";
+import c1b from "@/assets/case1-before.jpg";
+import c1a from "@/assets/case1-after.jpg";
+import c2b from "@/assets/case2-before.jpg";
+import c2a from "@/assets/case2-after.jpg";
+import c3b from "@/assets/case3-before.jpg";
+import c3a from "@/assets/case3-after.jpg";
+import c4b from "@/assets/case4-before.jpg";
+import c4a from "@/assets/case4-after.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -140,20 +148,33 @@ function Why() {
   const items = [
     { icon: Smile, t: "Безболезненное лечение", d: "Современная анестезия и деликатный подход к каждому пациенту." },
     { icon: Cpu, t: "Цифровая диагностика", d: "КТ и план лечения уже на первом приёме." },
-    { icon: Users, t: "Врачи с большим опытом", d: "Специалисты ведущих клиник Москвы, постоянное обучение." },
-    { icon: HeartPulse, t: "Комплексный подход", d: "От профилактики до полной имплантации — всё в одной клинике." },
+    { icon: Users, t: "Врачи с большим опытом", d: "Специалисты ведущих клиник Москвы и постоянное обучение." },
+    { icon: HeartPulse, t: "Комплексный подход", d: "От профилактики до имплантации — всё в одной клинике." },
   ];
   return (
-    <section id="about" className="mx-auto max-w-7xl px-4 py-16">
-      <h2 className="text-2xl font-bold text-foreground md:text-3xl">Почему нас выбирают</h2>
-      <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <section id="about" className="mx-auto max-w-7xl px-4 py-20">
+      <div className="mb-10 max-w-2xl">
+        <span className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3 py-1 text-xs font-medium text-primary">
+          Преимущества
+        </span>
+        <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          Почему нас выбирают
+        </h2>
+        <p className="mt-3 text-base text-muted-foreground">
+          Создаём комфортные условия и используем современные технологии, чтобы каждый визит был спокойным и предсказуемым.
+        </p>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {items.map(({ icon: Icon, t, d }) => (
-          <div key={t} className="rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-md">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-soft text-primary">
-              <Icon className="h-5 w-5" />
+          <div
+            key={t}
+            className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+              <Icon className="h-6 w-6" />
             </div>
-            <div className="mt-4 font-semibold text-foreground">{t}</div>
-            <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+            <h3 className="mt-5 text-base font-semibold leading-snug text-foreground">{t}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
           </div>
         ))}
       </div>
@@ -237,10 +258,10 @@ function Doctor() {
 
 function Results() {
   const cases = [
-    { t: "Имплантация", d: "Полное восстановление жевательной функции", s: "3 месяца" },
-    { t: "Виниры E.max", d: "Эстетика и естественный результат", s: "5 дней" },
-    { t: "Реставрация зубов", d: "Восстановление формы и цвета зубов", s: "1 день" },
-    { t: "Отбеливание", d: "Безопасное отбеливание с длительным эффектом", s: "1 час" },
+    { t: "Имплантация", d: "Полное восстановление жевательной функции", s: "3 месяца", before: c1b, after: c1a },
+    { t: "Виниры E.max", d: "Эстетика и естественный результат", s: "5 дней", before: c2b, after: c2a },
+    { t: "Реставрация зубов", d: "Восстановление формы и цвета зубов", s: "1 день", before: c3b, after: c3a },
+    { t: "Отбеливание", d: "Безопасное отбеливание с длительным эффектом", s: "1 час", before: c4b, after: c4a },
   ];
   return (
     <section className="bg-surface py-16">
@@ -256,10 +277,12 @@ function Results() {
           {cases.map((c) => (
             <div key={c.t} className="overflow-hidden rounded-2xl border border-border bg-card p-3">
               <div className="grid grid-cols-2 gap-2">
-                <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
+                <div className="relative aspect-square overflow-hidden rounded-lg">
+                  <img src={c.before} alt={`${c.t} — до`} loading="lazy" width={512} height={512} className="h-full w-full object-cover" />
                   <span className="absolute left-2 top-2 rounded-full bg-background/90 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">до</span>
                 </div>
-                <div className="relative aspect-square overflow-hidden rounded-lg bg-primary-soft">
+                <div className="relative aspect-square overflow-hidden rounded-lg">
+                  <img src={c.after} alt={`${c.t} — после`} loading="lazy" width={512} height={512} className="h-full w-full object-cover" />
                   <span className="absolute left-2 top-2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-medium text-primary-foreground">после</span>
                 </div>
               </div>
@@ -339,9 +362,9 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3">
         <div className="space-y-3 text-sm text-muted-foreground">
           <Logo />
-          <a href="tel:+74996734401" className="flex items-center gap-2 text-foreground hover:text-primary"><Phone className="h-4 w-4 text-primary" /> +7 (499) 673-44-01</a>
-          <div className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" /> Москва, ул. Октябрьская, 36 (м. Марьина Роща)</div>
-          <a href="mailto:info@biostom.ru" className="flex items-center gap-2 hover:text-primary"><Mail className="h-4 w-4 text-primary" /> info@biostom.ru</a>
+          <a href="tel:+74996734401" className="flex items-center gap-2 text-foreground hover:text-primary"><Phone className="h-4 w-4 text-primary" /><span>+7 (499) 673-44-01</span></a>
+          <div className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" /><span>Москва, ул. Октябрьская, 36 (м. Марьина Роща)</span></div>
+          <a href="mailto:info@biostom.ru" className="flex items-center gap-2 hover:text-primary"><Mail className="h-4 w-4 text-primary" /><span>info@biostom.ru</span></a>
         </div>
         <div className="overflow-hidden rounded-2xl border border-border bg-muted">
           <iframe
