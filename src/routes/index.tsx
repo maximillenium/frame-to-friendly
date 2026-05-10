@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Phone, MapPin, Mail, Clock, Check, ChevronLeft, ChevronRight,
-  Smile, Shield, Star, Sparkles, Users, Cpu, Stethoscope, HeartPulse,
+  Smile, Star, Sparkles, Users, Cpu, Stethoscope, HeartPulse,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import doctor from "@/assets/doctor.jpg";
@@ -113,32 +113,6 @@ function Hero() {
             <img src={hero} alt="Врач-стоматолог проводит осмотр пациентки" width={1280} height={896} className="h-full w-full object-cover" />
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Stats() {
-  const items = [
-    { icon: Users, n: "2000+", t: "пациентов доверили нам лечение" },
-    { icon: Shield, n: "16+", t: "лет опыта ведущих специалистов Москвы" },
-    { icon: Star, n: "98%", t: "рекомендаций от наших пациентов" },
-    { icon: Cpu, n: "CAD/CAM", t: "и цифровая диагностика — точность современного уровня" },
-  ];
-  return (
-    <section className="mx-auto -mt-10 max-w-7xl px-4">
-      <div className="grid gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm md:grid-cols-4 md:p-6">
-        {items.map(({ icon: Icon, n, t }) => (
-          <div key={n} className="flex items-start gap-3 rounded-xl p-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary">
-              <Icon className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="text-xl font-bold text-foreground">{n}</div>
-              <div className="text-xs leading-snug text-muted-foreground">{t}</div>
-            </div>
-          </div>
-        ))}
       </div>
     </section>
   );
@@ -394,7 +368,6 @@ function Index() {
       <Header />
       <main>
         <Hero />
-        <Stats />
         <Why />
         <Services />
         <Doctor />
