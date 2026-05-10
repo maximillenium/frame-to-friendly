@@ -148,20 +148,33 @@ function Why() {
   const items = [
     { icon: Smile, t: "Безболезненное лечение", d: "Современная анестезия и деликатный подход к каждому пациенту." },
     { icon: Cpu, t: "Цифровая диагностика", d: "КТ и план лечения уже на первом приёме." },
-    { icon: Users, t: "Врачи с большим опытом", d: "Специалисты ведущих клиник Москвы, постоянное обучение." },
-    { icon: HeartPulse, t: "Комплексный подход", d: "От профилактики до полной имплантации — всё в одной клинике." },
+    { icon: Users, t: "Врачи с большим опытом", d: "Специалисты ведущих клиник Москвы и постоянное обучение." },
+    { icon: HeartPulse, t: "Комплексный подход", d: "От профилактики до имплантации — всё в одной клинике." },
   ];
   return (
-    <section id="about" className="mx-auto max-w-7xl px-4 py-16">
-      <h2 className="text-2xl font-bold text-foreground md:text-3xl">Почему нас выбирают</h2>
-      <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <section id="about" className="mx-auto max-w-7xl px-4 py-20">
+      <div className="mb-10 max-w-2xl">
+        <span className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3 py-1 text-xs font-medium text-primary">
+          Преимущества
+        </span>
+        <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          Почему нас выбирают
+        </h2>
+        <p className="mt-3 text-base text-muted-foreground">
+          Создаём комфортные условия и используем современные технологии, чтобы каждый визит был спокойным и предсказуемым.
+        </p>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {items.map(({ icon: Icon, t, d }) => (
-          <div key={t} className="rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-md">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-soft text-primary">
-              <Icon className="h-5 w-5" />
+          <div
+            key={t}
+            className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+              <Icon className="h-6 w-6" />
             </div>
-            <div className="mt-4 font-semibold text-foreground">{t}</div>
-            <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+            <h3 className="mt-5 text-base font-semibold leading-snug text-foreground">{t}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
           </div>
         ))}
       </div>
