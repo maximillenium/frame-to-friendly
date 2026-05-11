@@ -58,7 +58,7 @@ function Header() {
   ];
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4">
         <Logo />
         <nav className="hidden items-center gap-7 lg:flex">
           {links.map(([l, h]) => (
@@ -79,7 +79,7 @@ function Header() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-hero-bg">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 lg:grid-cols-2 lg:py-20">
+      <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-12 lg:grid-cols-2 lg:py-20">
         <div className="flex flex-col justify-center">
           <span className="inline-flex w-fit items-center gap-2 rounded-full bg-primary-soft px-4 py-1.5 text-xs font-medium text-primary">
             <Sparkles className="h-3.5 w-3.5" /> Современная стоматология для всей семьи
@@ -126,7 +126,7 @@ function Why() {
     { icon: HeartPulse, t: "Комплексный подход", d: "От профилактики до имплантации — всё в одной клинике." },
   ];
   return (
-    <section id="about" className="mx-auto max-w-7xl px-4 py-20">
+    <section id="about" className="mx-auto max-w-[1200px] px-4 py-20">
       <div className="mb-10 max-w-2xl">
         <span className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3 py-1 text-xs font-medium text-primary">
           Преимущества
@@ -167,7 +167,7 @@ function Services() {
   ];
   return (
     <section id="services" className="bg-surface py-16">
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-[1200px] px-4">
         <h2 className="text-2xl font-bold text-foreground md:text-3xl">Наши услуги</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {items.map(({ img, t, d }) => (
@@ -192,7 +192,7 @@ function Services() {
 
 function Doctor() {
   return (
-    <section id="doctors" className="mx-auto max-w-7xl px-4 py-16">
+    <section id="doctors" className="mx-auto max-w-[1200px] px-4 py-16">
       <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
         <div className="overflow-hidden rounded-2xl">
           <img src={doctor} alt="Главный врач клиники" loading="lazy" width={768} height={768} className="h-full w-full object-cover" />
@@ -239,7 +239,7 @@ function Results() {
   ];
   return (
     <section className="bg-surface py-16">
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-[1200px] px-4">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-foreground md:text-3xl">Результаты, которыми мы гордимся</h2>
           <div className="hidden gap-2 md:flex">
@@ -280,7 +280,7 @@ function Reviews() {
     { n: "Ольга Л.", a: a3, t: "Ходим всей семьёй. Дети лечат зубы без страха, а я — спокойна за их здоровье." },
   ];
   return (
-    <section id="reviews" className="mx-auto max-w-7xl px-4 py-16">
+    <section id="reviews" className="mx-auto max-w-[1200px] px-4 py-16">
       <h2 className="text-2xl font-bold text-foreground md:text-3xl">Отзывы наших пациентов</h2>
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         {items.map((r) => (
@@ -302,7 +302,7 @@ function Reviews() {
 
 function CTA() {
   return (
-    <section id="cta" className="mx-auto max-w-7xl px-4 pb-16">
+    <section id="cta" className="mx-auto max-w-[1200px] px-4 pb-16">
       <div
         className="relative overflow-hidden rounded-3xl px-6 py-10 md:px-12 md:py-12"
         style={{ background: "linear-gradient(120deg, var(--cta-from), var(--cta-to))" }}
@@ -333,7 +333,7 @@ function CTA() {
 function Footer() {
   return (
     <footer id="contacts" className="border-t border-border bg-card">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3">
+      <div className="mx-auto grid max-w-[1200px] gap-8 px-4 py-12 md:grid-cols-3">
         <div className="space-y-3 text-sm text-muted-foreground">
           <Logo />
           <a href="tel:+74996734401" className="flex items-center gap-2 text-foreground hover:text-primary"><Phone className="h-4 w-4 text-primary" /><span>+7 (499) 673-44-01</span></a>
