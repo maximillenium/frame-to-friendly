@@ -11,6 +11,13 @@ import sOrtho from "@/assets/service-ortho.jpg";
 import sBraces from "@/assets/service-braces.jpg";
 import sSurgery from "@/assets/service-surgery.jpg";
 import sHygiene from "@/assets/service-hygiene.jpg";
+import sKids from "@/assets/service-kids.jpg";
+import sTmj from "@/assets/service-tmj.jpg";
+import sAesthetic from "@/assets/service-aesthetic.jpg";
+import sPerio from "@/assets/service-perio.jpg";
+import sSaliva from "@/assets/service-saliva.jpg";
+import sMicroscope from "@/assets/service-microscope.jpg";
+import sCt from "@/assets/service-ct.jpg";
 import a1 from "@/assets/avatar1.jpg";
 import a2 from "@/assets/avatar2.jpg";
 import a3 from "@/assets/avatar3.jpg";
@@ -164,6 +171,13 @@ function Services() {
     { img: sBraces, t: "Ортодонтия", d: "Брекеты и элайнеры для взрослых и детей." },
     { img: sSurgery, t: "Хирургия", d: "Удаление зубов любой сложности, пластика, синус-лифтинг." },
     { img: sHygiene, t: "Профгигиена", d: "Профилактика заболеваний, отбеливание, Air Flow." },
+    { img: sKids, t: "Детская стоматология", d: "Бережное лечение для детей в дружелюбной атмосфере." },
+    { img: sTmj, t: "Лечение дисфункции сустава", d: "Диагностика и лечение ВНЧС, устранение боли и щелчков." },
+    { img: sAesthetic, t: "Эстетическая стоматология", d: "Создание красивой улыбки: виниры, реставрации, отбеливание." },
+    { img: sPerio, t: "Пародонтология и СОПР", d: "Лечение заболеваний дёсен и слизистой полости рта." },
+    { img: sSaliva, t: "Заболевания слюнных желёз", d: "Диагностика и лечение патологий слюнных желёз." },
+    { img: sMicroscope, t: "Лечение под микроскопом", d: "Точное лечение каналов и реставрации с увеличением." },
+    { img: sCt, t: "Компьютерная томография", d: "3D-диагностика для точного плана лечения." },
   ];
   return (
     <section id="services" className="bg-surface py-16">
