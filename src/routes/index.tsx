@@ -102,7 +102,7 @@ function Hero() {
                 Современная стоматология
               </span>
               <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.15] md:text-5xl">
-                Восстанавливаем здоровье зубов даже в сложных случаях
+                Стоматология для всей семьи
               </h1>
               <p className="mt-5 max-w-md text-sm leading-relaxed text-white/80">
                 Лечение под микроскопом и индивидуальный подход для максимального результата и вашего комфорта.
