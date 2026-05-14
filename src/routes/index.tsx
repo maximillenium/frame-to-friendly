@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   Phone, MapPin, Mail, Clock, ChevronLeft, ChevronRight, Quote,
   Microscope, Stethoscope, Sparkles, Award, Users, ShieldCheck,
-  Smile, Activity, Heart, Baby, Scan, Crown, Layers,
+  Smile, ScanSearch, Syringe, Crown, Bone, ShieldPlus,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import doctor from "@/assets/doctor.jpg";
@@ -151,14 +151,14 @@ function Why() {
 
 function Services() {
   const items = [
-    { icon: Scan, t: "Диагностика", d: "Комплексная диагностика и 3D-сканирование" },
-    { icon: Activity, t: "Лечение зубов", d: "Терапевтическое лечение любой сложности" },
+    { icon: ScanSearch, t: "Диагностика", d: "Комплексная диагностика и 3D-сканирование" },
+    { icon: Syringe, t: "Лечение зубов", d: "Терапевтическое лечение любой сложности" },
     { icon: Microscope, t: "Лечение под микроскопом", d: "Эндодонтия с максимальной точностью" },
     { icon: Crown, t: "Протезирование", d: "Эстетическое восстановление и протезирование" },
-    { icon: Layers, t: "Имплантация", d: "Надёжная имплантация и восстановление зубов" },
+    { icon: Bone, t: "Имплантация", d: "Надёжная имплантация и восстановление зубов" },
     { icon: Smile, t: "Ортодонтия", d: "Исправление прикуса и выравнивание зубов" },
     { icon: Sparkles, t: "Эстетическая стоматология", d: "Отбеливание, виниры, художественная реставрация" },
-    { icon: Heart, t: "Пародонтология", d: "Лечение дёсен и забота о здоровье пародонта" },
+    { icon: ShieldPlus, t: "Пародонтология", d: "Лечение дёсен и забота о здоровье пародонта" },
   ];
   return (
     <section id="services" className="bg-surface py-24">
