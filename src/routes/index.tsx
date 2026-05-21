@@ -52,8 +52,8 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Центр Биостоматологии — современная стоматология у м. Марьина Роща" },
-      { name: "description", content: "Лечение, имплантация и эстетическая стоматология по международным протоколам. Запись на консультацию: +7 (499) 673-44-01." },
+      { title: "Центр БиоСтоматологии — современная стоматология у м. Марьина Роща" },
+      { name: "description", content: "Москва, ул. Октябрьская, 36. Лечение, имплантация и эстетическая стоматология. Запись: +7 (499) 673-44-01." },
     ],
   }),
 });
@@ -85,11 +85,11 @@ function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-5">
-          <a href="tel:+74951234567" className="hidden text-right md:block">
+          <a href="tel:+74996734401" className="hidden text-right md:block">
             <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-              <Phone className="h-4 w-4 text-[var(--gold)]" /> +7 (495) 123-45-67
+              <Phone className="h-4 w-4 text-[var(--gold)]" /> +7 (499) 673-44-01
             </div>
-            <div className="text-[11px] text-muted-foreground">Ежедневно с 9:00 до 21:00</div>
+            <div className="text-[11px] text-muted-foreground">Пн–Сб с 9:00 до 21:00</div>
           </a>
           <a href="#cta" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-2.5 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
             Записаться на приём
@@ -472,7 +472,7 @@ function CTA() {
             Оставьте заявку, мы свяжемся с вами, чтобы подобрать удобное время приёма и ответить на все вопросы.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-5">
-            <a href="tel:+74951234567" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
+            <a href="tel:+74996734401" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
               Записаться на приём
             </a>
             <a href="#cta" className="text-sm font-medium text-foreground/80 underline-offset-4 hover:text-[var(--gold)] hover:underline">
@@ -500,10 +500,10 @@ function Footer() {
         </div>
         <div className="space-y-3 text-sm">
           <div className="font-serif text-base font-semibold text-white">Контакты</div>
-          <a href="tel:+74951234567" className="flex items-center gap-2 hover:text-[var(--gold)]"><Phone className="h-4 w-4 text-[var(--gold)]" /><span>+7 (495) 123-45-67</span></a>
-          <a href="mailto:info@biostom.ru" className="flex items-center gap-2 hover:text-[var(--gold)]"><Mail className="h-4 w-4 text-[var(--gold)]" /><span>info@biostom.ru</span></a>
-          <div className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-[var(--gold)]" /><span>Москва, ул. Октябрьская, 36</span></div>
-          <div className="flex items-start gap-2"><Clock className="mt-0.5 h-4 w-4 text-[var(--gold)]" /><span>Ежедневно с 9:00 до 21:00</span></div>
+          <a href="tel:+74996734401" className="flex items-center gap-2 hover:text-[var(--gold)]"><Phone className="h-4 w-4 text-[var(--gold)]" /><span>+7 (499) 673-44-01</span></a>
+          <a href="mailto:info@cbstom.ru" className="flex items-center gap-2 hover:text-[var(--gold)]"><Mail className="h-4 w-4 text-[var(--gold)]" /><span>info@cbstom.ru</span></a>
+          <div className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-[var(--gold)]" /><span>127473, Москва, ул. Октябрьская, 36 (м. Марьина Роща)</span></div>
+          <div className="flex items-start gap-2"><Clock className="mt-0.5 h-4 w-4 text-[var(--gold)]" /><span>Пн–Сб с 9:00 до 21:00, Вс — выходной</span></div>
         </div>
         <div className="space-y-3 text-sm">
           <div className="font-serif text-base font-semibold text-white">Меню</div>
@@ -514,7 +514,7 @@ function Footer() {
         <div className="overflow-hidden rounded-sm border border-white/10">
           <iframe
             title="Карта"
-            src="https://maps.google.com/maps?q=Moscow%20Maryina%20Roscha&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%2C%2036&t=&z=16&ie=UTF8&iwloc=&output=embed"
             className="h-40 w-full"
             loading="lazy"
           />
