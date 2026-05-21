@@ -85,11 +85,11 @@ function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-5">
-          <a href="tel:+74951234567" className="hidden text-right md:block">
+          <a href="tel:+74996734401" className="hidden text-right md:block">
             <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-              <Phone className="h-4 w-4 text-[var(--gold)]" /> +7 (495) 123-45-67
+              <Phone className="h-4 w-4 text-[var(--gold)]" /> +7 (499) 673-44-01
             </div>
-            <div className="text-[11px] text-muted-foreground">Ежедневно с 9:00 до 21:00</div>
+            <div className="text-[11px] text-muted-foreground">Пн–Сб с 9:00 до 21:00</div>
           </a>
           <a href="#cta" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-2.5 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
             Записаться на приём
