@@ -516,7 +516,7 @@ function Footer() {
         <div className="overflow-hidden rounded-sm border border-white/10">
           <iframe
             title="Центр Биостоматологии на Яндекс.Картах"
-            src="https://yandex.ru/map-widget/v1/?ll=37.610104%2C55.792789&z=18&pt=37.610104%2C55.792789%2Cpm2rdm"
+            src="https://yandex.ru/map-widget/v1/?ll=37.610350%2C55.792900&z=18&pt=37.610350%2C55.792900%2Cpm2rdm"
             className="h-[280px] w-full"
             loading="lazy"
             allowFullScreen
