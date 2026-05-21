@@ -225,7 +225,7 @@ function Philosophy() {
       <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-6 md:grid-cols-2">
         <div>
           <div className="overflow-hidden rounded-sm bg-[#eaf2fb]">
-            <img src={chiefDoctor} alt="Симакова Татьяна Геннадьевна" className="h-[480px] w-full object-cover object-top" />
+            <img src={chiefDoctor} alt="Симакова Татьяна Геннадьевна" className="h-[480px] w-full object-cover object-center" />
           </div>
           <div className="mt-4">
             <div className="font-serif text-lg font-semibold text-foreground">Симакова Татьяна Геннадьевна</div>
