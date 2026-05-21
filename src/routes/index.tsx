@@ -277,13 +277,12 @@ function Results() {
     { t: "Лечение глубокого кариеса", d: "Композитная реставрация передних зубов", before: c5b, after: c5a },
     { t: "Исправление прикуса", d: "Ортодонтическое лечение элайнерами", before: c6b, after: c6a },
   ];
-  const [index, setIndex] = useState(0);
   const perView = 2;
   const pages = Math.ceil(cases.length / perView);
-  const page = Math.floor(index / perView);
-  const prev = () => setIndex((i) => (i - perView + cases.length) % cases.length);
-  const next = () => setIndex((i) => (i + perView) % cases.length);
-  const visible = [cases[index % cases.length], cases[(index + 1) % cases.length]];
+  const [page, setPage] = useState(0);
+  const prev = () => setPage((p) => (p - 1 + pages) % pages);
+  const next = () => setPage((p) => (p + 1) % pages);
+  const grouped = Array.from({ length: pages }, (_, i) => cases.slice(i * perView, i * perView + perView));
   return (
     <section className="bg-[var(--navy-deep)] py-24 text-white">
       <div className="mx-auto max-w-[1200px] px-6">
@@ -302,34 +301,43 @@ function Results() {
           </button>
         </div>
         <div className="mt-12">
-          <div className="grid gap-6 md:grid-cols-2">
-            {visible.map((c, i) => (
-              <div key={`${c.t}-${i}`} className="rounded-sm bg-white/5 p-4 backdrop-blur">
-                <div className="grid grid-cols-2 gap-2">
-                  {[["до", c.before] as const, ["после", c.after] as const].map(([label, img]) => (
-                    <div key={label} className="relative aspect-[4/3] overflow-hidden rounded-sm">
-                      <img src={img} alt={`${c.t} — ${label}`} loading="lazy" className="h-full w-full object-cover" />
-                      <span className="absolute left-2 top-2 rounded-sm bg-black/60 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white">{label}</span>
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ transform: `translateX(-${page * 100}%)` }}
+            >
+              {grouped.map((group, gi) => (
+                <div key={gi} className="grid w-full shrink-0 gap-6 md:grid-cols-2">
+                  {group.map((c) => (
+                    <div key={c.t} className="rounded-sm bg-white/5 p-4 backdrop-blur">
+                      <div className="grid grid-cols-2 gap-2">
+                        {[["до", c.before] as const, ["после", c.after] as const].map(([label, img]) => (
+                          <div key={label} className="relative aspect-[4/3] overflow-hidden rounded-sm">
+                            <img src={img} alt={`${c.t} — ${label}`} loading="lazy" className="h-full w-full object-cover" />
+                            <span className="absolute left-2 top-2 rounded-sm bg-black/60 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4 flex items-end justify-between gap-3 px-1">
+                        <div>
+                          <div className="font-serif text-base font-semibold">{c.t}</div>
+                          <p className="mt-1 text-xs text-white/65">{c.d}</p>
+                        </div>
+                        <a href="#cta" className="text-xs font-medium text-[var(--gold)] hover:underline">Подробнее →</a>
+                      </div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 flex items-end justify-between gap-3 px-1">
-                  <div>
-                    <div className="font-serif text-base font-semibold">{c.t}</div>
-                    <p className="mt-1 text-xs text-white/65">{c.d}</p>
-                  </div>
-                  <a href="#cta" className="text-xs font-medium text-[var(--gold)] hover:underline">Подробнее →</a>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="mt-8 flex items-center justify-center gap-2">
             {Array.from({ length: pages }).map((_, i) => (
               <button
                 key={i}
-                onClick={() => setIndex(i * perView)}
+                onClick={() => setPage(i)}
                 aria-label={`Перейти к группе ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-[var(--gold)]" : "w-4 bg-white/25 hover:bg-white/40"}`}
+                className={`h-1.5 rounded-full transition-all duration-500 ${i === page ? "w-8 bg-[var(--gold)]" : "w-4 bg-white/25 hover:bg-white/40"}`}
               />
             ))}
           </div>
@@ -356,7 +364,7 @@ function Doctors() {
   const [page, setPage] = useState(0);
   const perView = 4;
   const pages = Math.ceil(docs.length / perView);
-  const visible = docs.slice(page * perView, page * perView + perView);
+  const grouped = Array.from({ length: pages }, (_, i) => docs.slice(i * perView, i * perView + perView));
   const prev = () => setPage((p) => (p - 1 + pages) % pages);
   const next = () => setPage((p) => (p + 1) % pages);
   return (
@@ -376,19 +384,28 @@ function Doctors() {
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {visible.map((d) => (
-            <div key={d.n} className="rounded-sm border border-border bg-card p-3 transition hover:shadow-lg">
-              <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
-                <img src={d.img} alt={d.n} loading="lazy" className="h-full w-full object-cover object-top" />
+        <div className="mt-8 overflow-hidden">
+          <div
+            className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{ transform: `translateX(-${page * 100}%)` }}
+          >
+            {grouped.map((group, gi) => (
+              <div key={gi} className="grid w-full shrink-0 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {group.map((d) => (
+                  <div key={d.n} className="rounded-sm border border-border bg-card p-3 transition duration-300 hover:shadow-lg">
+                    <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
+                      <img src={d.img} alt={d.n} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-500 hover:scale-[1.03]" />
+                    </div>
+                    <div className="px-2 pb-3 pt-4">
+                      <div className="font-serif text-base font-semibold text-foreground">{d.n}</div>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{d.r}</p>
+                      <a href="#cta" className="mt-3 inline-block text-xs font-medium text-[var(--gold)] hover:underline">Подробнее →</a>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="px-2 pb-3 pt-4">
-                <div className="font-serif text-base font-semibold text-foreground">{d.n}</div>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{d.r}</p>
-                <a href="#cta" className="mt-3 inline-block text-xs font-medium text-[var(--gold)] hover:underline">Подробнее →</a>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         <div className="mt-8 flex items-center justify-center gap-2">
           {Array.from({ length: pages }).map((_, i) => (
@@ -396,7 +413,7 @@ function Doctors() {
               key={i}
               onClick={() => setPage(i)}
               aria-label={`Страница ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-[var(--gold)]" : "w-4 bg-border hover:bg-foreground/40"}`}
+              className={`h-1.5 rounded-full transition-all duration-500 ${i === page ? "w-8 bg-[var(--gold)]" : "w-4 bg-border hover:bg-foreground/40"}`}
             />
           ))}
         </div>
