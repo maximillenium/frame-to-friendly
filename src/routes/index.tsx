@@ -32,6 +32,10 @@ import c3b from "@/assets/case3-before.jpg";
 import c3a from "@/assets/case3-after.jpg";
 import c4b from "@/assets/case4-before.jpg";
 import c4a from "@/assets/case4-after.jpg";
+import c5b from "@/assets/case5-before.jpg";
+import c5a from "@/assets/case5-after.jpg";
+import c6b from "@/assets/case6-before.jpg";
+import c6a from "@/assets/case6-after.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -265,25 +269,41 @@ function Results() {
     { t: "Комплексная реставрация улыбки", d: "Эстетическое восстановление и виниры", before: c2b, after: c2a },
     { t: "Имплантация и протезирование", d: "Полное восстановление функции", before: c3b, after: c3a },
     { t: "Отбеливание", d: "Безопасное отбеливание", before: c4b, after: c4a },
+    { t: "Лечение глубокого кариеса", d: "Композитная реставрация передних зубов", before: c5b, after: c5a },
+    { t: "Исправление прикуса", d: "Ортодонтическое лечение элайнерами", before: c6b, after: c6a },
   ];
+  const [index, setIndex] = useState(0);
+  const perView = 2;
+  const pages = Math.ceil(cases.length / perView);
+  const page = Math.floor(index / perView);
+  const prev = () => setIndex((i) => (i - perView + cases.length) % cases.length);
+  const next = () => setIndex((i) => (i + perView) % cases.length);
+  const visible = [cases[index % cases.length], cases[(index + 1) % cases.length]];
   return (
     <section className="bg-[var(--navy-deep)] py-24 text-white">
       <div className="mx-auto max-w-[1200px] px-6">
-        <div className="text-center">
-          <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Результаты лечения</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium md:text-4xl">
-            Сложные случаи — наши лучшие результаты
-          </h2>
+        <div className="flex flex-col items-center gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="text-center md:text-left">
+            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Результаты лечения</span>
+            <h2 className="mt-3 font-serif text-3xl font-medium md:text-4xl">
+              Сложные случаи — наши лучшие результаты
+            </h2>
+          </div>
+          <div className="flex items-center gap-3">
+            <button onClick={prev} aria-label="Назад" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/5 text-white transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]">
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button onClick={next} aria-label="Вперёд" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/5 text-white transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]">
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
         </div>
-        <div className="relative mt-12">
-          <button aria-label="Назад" className="absolute -left-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 backdrop-blur transition hover:bg-white/10 md:flex">
-            <ChevronLeft className="h-5 w-5" />
-          </button>
+        <div className="mt-12">
           <div className="grid gap-6 md:grid-cols-2">
-            {cases.slice(0, 2).map((c) => (
-              <div key={c.t} className="rounded-sm bg-white/5 p-4 backdrop-blur">
+            {visible.map((c, i) => (
+              <div key={`${c.t}-${i}`} className="rounded-sm bg-white/5 p-4 backdrop-blur">
                 <div className="grid grid-cols-2 gap-2">
-                  {[["до", c.before], ["после", c.after]].map(([label, img]) => (
+                  {[["до", c.before] as const, ["после", c.after] as const].map(([label, img]) => (
                     <div key={label} className="relative aspect-[4/3] overflow-hidden rounded-sm">
                       <img src={img} alt={`${c.t} — ${label}`} loading="lazy" className="h-full w-full object-cover" />
                       <span className="absolute left-2 top-2 rounded-sm bg-black/60 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white">{label}</span>
@@ -300,9 +320,16 @@ function Results() {
               </div>
             ))}
           </div>
-          <button aria-label="Вперёд" className="absolute -right-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 backdrop-blur transition hover:bg-white/10 md:flex">
-            <ChevronRight className="h-5 w-5" />
-          </button>
+          <div className="mt-8 flex items-center justify-center gap-2">
+            {Array.from({ length: pages }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i * perView)}
+                aria-label={`Перейти к группе ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-[var(--gold)]" : "w-4 bg-white/25 hover:bg-white/40"}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
