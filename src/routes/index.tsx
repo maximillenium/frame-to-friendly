@@ -61,13 +61,7 @@ export const Route = createFileRoute("/")({
 function Logo() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--gold)]/40 text-[var(--gold)]">
-        <Stethoscope className="h-6 w-6" />
-      </div>
-      <div className="leading-tight font-serif">
-        <div className="text-base font-semibold text-foreground">Центр</div>
-        <div className="text-base font-semibold text-foreground -mt-0.5">БиоСтоматологии</div>
-      </div>
+      <img src={logoImg} alt="Центр Биостоматологии" className="h-11 w-auto" />
     </div>
   );
 }
@@ -347,11 +341,24 @@ function Results() {
 
 function Doctors() {
   const docs = [
-    { n: "Иванов Алексей Сергеевич", r: "Главный врач, стоматолог-хирург, имплантолог", img: doctor },
-    { n: "Петрова Мария Игоревна", r: "Стоматолог-терапевт, эндодонтист", img: doctor },
-    { n: "Соколов Дмитрий Олегович", r: "Ортопед, специалист по эстетической реставрации", img: doctor },
-    { n: "Кузнецова Анна Павловна", r: "Стоматолог-пародонтолог, гигиенист", img: doctor },
+    { n: "Симакова Татьяна Геннадьевна", r: "Главный врач, доктор медицинских наук", img: docSimakova },
+    { n: "Кириенко Виктория Викторовна", r: "Стоматолог-терапевт, кандидат медицинских наук", img: docKirienko },
+    { n: "Гайдук Игорь Викторович", r: "Стоматолог-хирург, имплантолог, кандидат медицинских наук, доцент", img: docGajduk },
+    { n: "Дмитриев Игорь Анатольевич", r: "Стоматолог-ортопед, гнатолог", img: docDmitriev },
+    { n: "Ергешева Елена Валентиновна", r: "Стоматолог-терапевт, кандидат медицинских наук, доцент", img: docErgesheva },
+    { n: "Страндстрем Илья Михайлович", r: "Стоматолог-ортопед, гнатолог, кандидат медицинских наук", img: docStrandstrem },
+    { n: "Лазарева Анастасия Андреевна", r: "Стоматолог-хирург", img: docLazareva },
+    { n: "Нагорная Надежда Николаевна", r: "Стоматолог-хирург", img: docNagornaya },
+    { n: "Табакова Инна Александровна", r: "Стоматолог-хирург", img: docTabakova },
+    { n: "Сарибекян Рузана Аветиковна", r: "Стоматолог-ортодонт", img: docSaribekyan },
+    { n: "Ухова Екатерина Юрьевна", r: "Стоматолог-терапевт", img: docUhova },
   ];
+  const [page, setPage] = useState(0);
+  const perView = 4;
+  const pages = Math.ceil(docs.length / perView);
+  const visible = docs.slice(page * perView, page * perView + perView);
+  const prev = () => setPage((p) => (p - 1 + pages) % pages);
+  const next = () => setPage((p) => (p + 1) % pages);
   return (
     <section id="doctors" className="bg-background py-24">
       <div className="mx-auto max-w-[1200px] px-6">
@@ -361,11 +368,19 @@ function Doctors() {
             Опыт, которому можно доверять
           </h2>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {docs.map((d) => (
+        <div className="mt-8 flex items-center justify-center gap-3">
+          <button onClick={prev} aria-label="Назад" className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]">
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button onClick={next} aria-label="Вперёд" className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]">
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {visible.map((d) => (
             <div key={d.n} className="rounded-sm border border-border bg-card p-3 transition hover:shadow-lg">
               <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
-                <img src={d.img} alt={d.n} loading="lazy" className="h-full w-full object-cover grayscale-[0.15]" />
+                <img src={d.img} alt={d.n} loading="lazy" className="h-full w-full object-cover object-top" />
               </div>
               <div className="px-2 pb-3 pt-4">
                 <div className="font-serif text-base font-semibold text-foreground">{d.n}</div>
@@ -375,10 +390,15 @@ function Doctors() {
             </div>
           ))}
         </div>
-        <div className="mt-10 flex justify-center">
-          <a href="#cta" className="inline-flex items-center rounded-sm border border-border bg-card px-7 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[var(--gold)]/50 hover:text-[var(--gold)]">
-            Все врачи
-          </a>
+        <div className="mt-8 flex items-center justify-center gap-2">
+          {Array.from({ length: pages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i)}
+              aria-label={`Страница ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-[var(--gold)]" : "w-4 bg-border hover:bg-foreground/40"}`}
+            />
+          ))}
         </div>
       </div>
     </section>
