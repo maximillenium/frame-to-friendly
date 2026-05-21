@@ -32,6 +32,10 @@ import c3b from "@/assets/case3-before.jpg";
 import c3a from "@/assets/case3-after.jpg";
 import c4b from "@/assets/case4-before.jpg";
 import c4a from "@/assets/case4-after.jpg";
+import c5b from "@/assets/case5-before.jpg";
+import c5a from "@/assets/case5-after.jpg";
+import c6b from "@/assets/case6-before.jpg";
+import c6a from "@/assets/case6-after.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
