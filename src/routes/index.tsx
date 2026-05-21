@@ -516,8 +516,8 @@ function Footer() {
         <div className="overflow-hidden rounded-sm border border-white/10">
           <iframe
             title="Центр Биостоматологии на Яндекс.Картах"
-            src="https://yandex.ru/map-widget/v1/?ll=37.606300%2C55.793700&z=17&mode=search&text=%D0%A6%D0%B5%D0%BD%D1%82%D1%80%20%D0%91%D0%B8%D0%BE%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%2036%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&sctx=ZAAAAAgBEAAaKAoSCQAAAAAAAEhAEQAAAAAAAEhAEhIJAAAAAAAAAAAQAAAAAAAAAAA%3D"
-            className="h-[480px] w-full"
+            src="https://yandex.ru/map-widget/v1/?ll=37.609400%2C55.792900&z=17&pt=37.609400%2C55.792900%2Cpm2rdl&mode=search&text=%D0%A6%D0%B5%D0%BD%D1%82%D1%80%20%D0%91%D0%B8%D0%BE%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%2036"
+            className="h-[280px] w-full"
             loading="lazy"
             allowFullScreen
           />
