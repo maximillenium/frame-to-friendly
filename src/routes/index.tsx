@@ -6,8 +6,19 @@ import {
   HeartHandshake, GraduationCap, Check,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
-import doctor from "@/assets/doctor.jpg";
 import chiefDoctor from "@/assets/chief-doctor.png";
+import logoImg from "@/assets/logo.png";
+import docSimakova from "@/assets/doctors/simakova.jpg";
+import docKirienko from "@/assets/doctors/kirienko.png";
+import docGajduk from "@/assets/doctors/gajduk.jpg";
+import docDmitriev from "@/assets/doctors/dmitriev.jpg";
+import docErgesheva from "@/assets/doctors/ergesheva.jpg";
+import docStrandstrem from "@/assets/doctors/strandstrem.jpg";
+import docLazareva from "@/assets/doctors/lazareva.jpg";
+import docNagornaya from "@/assets/doctors/nagornaya.png";
+import docTabakova from "@/assets/doctors/tabakova.jpg";
+import docSaribekyan from "@/assets/doctors/saribekyan.jpg";
+import docUhova from "@/assets/doctors/uhova.jpg";
 import sTherapy from "@/assets/service-therapy.jpg";
 import sImplant from "@/assets/service-implant.jpg";
 import sOrtho from "@/assets/service-ortho.jpg";
