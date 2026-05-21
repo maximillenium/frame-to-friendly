@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Phone, MapPin, Mail, Clock, ChevronLeft, ChevronRight, Quote,
   Microscope, Stethoscope, Award, Users, ShieldCheck,
-  HeartHandshake, GraduationCap, Check,
+  HeartHandshake, GraduationCap, Check, Menu, X,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import chiefDoctor from "@/assets/chief-doctor.png";
@@ -61,7 +61,7 @@ export const Route = createFileRoute("/")({
 function Logo() {
   return (
     <div className="flex items-center gap-3">
-      <img src={logoImg} alt="Центр Биостоматологии" className="h-11 w-auto" />
+      <img src={logoImg} alt="Центр Биостоматологии" className="h-9 w-auto sm:h-11" />
     </div>
   );
 }
@@ -75,27 +75,87 @@ function Header() {
     ["Отзывы", "#reviews"],
     ["Контакты", "#contacts"],
   ];
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:px-6 lg:h-20">
         <Logo />
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map(([l, h]) => (
             <a key={l} href={h} className="text-sm font-medium text-foreground/80 transition-colors hover:text-[var(--gold)]">{l}</a>
           ))}
         </nav>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 sm:gap-5">
           <a href="tel:+74996734401" className="hidden text-right md:block">
             <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
               <Phone className="h-4 w-4 text-[var(--gold)]" /> +7 (499) 673-44-01
             </div>
             <div className="text-[11px] text-muted-foreground">Пн–Сб с 9:00 до 21:00</div>
           </a>
-          <a href="#cta" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-2.5 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
-            Записаться на приём
+          <a
+            href="tel:+74996734401"
+            aria-label="Позвонить"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] md:hidden"
+          >
+            <Phone className="h-4 w-4" />
           </a>
+          <a
+            href="#cta"
+            className="hidden sm:inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-2.5 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
+          >
+            Записаться<span className="hidden md:inline">&nbsp;на приём</span>
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Открыть меню"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border text-foreground lg:hidden"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
         </div>
       </div>
+      {open && (
+        <div className="fixed inset-0 z-[60] bg-background lg:hidden">
+          <div className="flex h-16 items-center justify-between border-b border-border/60 px-4">
+            <Logo />
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="Закрыть меню"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border text-foreground"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <nav className="flex flex-col px-4 py-6">
+            {links.map(([l, h]) => (
+              <a
+                key={l}
+                href={h}
+                onClick={() => setOpen(false)}
+                className="border-b border-border/50 py-4 text-base font-medium text-foreground hover:text-[var(--gold)]"
+              >
+                {l}
+              </a>
+            ))}
+            <a
+              href="#cta"
+              onClick={() => setOpen(false)}
+              className="mt-6 inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-3 text-sm font-medium text-[var(--gold-foreground)]"
+            >
+              Записаться на приём
+            </a>
+            <a href="tel:+74996734401" className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-foreground">
+              <Phone className="h-4 w-4 text-[var(--gold)]" /> +7 (499) 673-44-01
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
@@ -103,19 +163,19 @@ function Header() {
 function Hero() {
   return (
     <section className="relative bg-background">
-      <div className="mx-auto max-w-[1200px] px-6 pt-10">
+      <div className="mx-auto max-w-[1200px] px-4 pt-6 sm:px-6 sm:pt-10">
         <div className="grid overflow-hidden rounded-sm bg-[#eaf2fb] md:grid-cols-[1.05fr_1fr]">
-          <div className="px-10 py-14 md:py-16">
-            <h1 className="font-serif text-3xl font-medium leading-[1.15] text-foreground md:text-[42px]">
+          <div className="order-2 px-6 py-10 sm:px-10 sm:py-14 md:order-1 md:py-16">
+            <h1 className="font-serif text-[26px] font-medium leading-[1.15] text-foreground sm:text-3xl md:text-[42px]">
               Восстанавливаем<br />здоровье зубов даже<br />в&nbsp;сложных случаях
             </h1>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground sm:mt-5">
               Используем лечение под микроскопом и современный подход для максимального результата и&nbsp;вашего комфорта.
             </p>
-            <a href="#cta" className="mt-7 inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
+            <a href="#cta" className="mt-6 inline-flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90 sm:mt-7 sm:w-auto">
               Записаться на приём
             </a>
-            <div className="mt-10 grid grid-cols-3 gap-4 text-xs">
+            <div className="mt-8 grid grid-cols-1 gap-3 text-xs sm:mt-10 sm:grid-cols-3 sm:gap-4">
               {[
                 ["Лицензия", "№ ЛО-77-01-019…"],
                 ["Опыт работы", "более 25 лет"],
@@ -131,7 +191,7 @@ function Hero() {
               ))}
             </div>
           </div>
-          <div className="relative min-h-[320px]">
+          <div className="relative order-1 min-h-[220px] sm:min-h-[280px] md:order-2 md:min-h-[320px]">
             <img src={hero} alt="Лечение под микроскопом" className="absolute inset-0 h-full w-full object-cover" />
           </div>
         </div>
@@ -148,10 +208,10 @@ function Why() {
     { icon: ShieldCheck, t: "Сложные случаи", d: "наше призвание" },
   ];
   return (
-    <section id="about" className="mx-auto max-w-[1200px] px-6 -mt-12 relative z-10">
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border bg-border bg-card shadow-xl lg:grid-cols-4">
+    <section id="about" className="mx-auto mt-10 max-w-[1200px] px-4 sm:px-6 md:-mt-12 relative z-10">
+      <div className="grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-border bg-border bg-card shadow-xl sm:grid-cols-2 lg:grid-cols-4">
         {items.map(({ icon: Icon, t, d }) => (
-          <div key={t} className="flex items-center gap-4 bg-card px-6 py-7">
+          <div key={t} className="flex items-center gap-4 bg-card px-5 py-5 sm:px-6 sm:py-7">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--gold)]/30 text-[var(--gold)]">
               <Icon className="h-6 w-6" />
             </div>
@@ -185,15 +245,15 @@ function Services() {
   const [expanded, setExpanded] = useState(false);
   const visible = expanded ? items : items.slice(0, 6);
   return (
-    <section id="services" className="bg-surface py-24">
-      <div className="mx-auto max-w-[1200px] px-6">
+    <section id="services" className="bg-surface py-16 sm:py-24">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="text-center">
           <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Услуги</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium text-foreground md:text-4xl">
+          <h2 className="mt-3 font-serif text-2xl font-medium text-foreground sm:text-3xl md:text-4xl">
             Решения для вашей красоты и здоровья
           </h2>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {visible.map(({ img, t, d }) => (
             <div key={t} className="group overflow-hidden rounded-sm border border-border bg-card transition-all hover:border-[var(--gold)]/50 hover:shadow-lg">
               <div className="aspect-[16/10] overflow-hidden bg-muted">
@@ -230,11 +290,11 @@ function Philosophy() {
     "Гарантия на все виды работ",
   ];
   return (
-    <section className="bg-background py-24">
-      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-6 md:grid-cols-2">
+    <section className="bg-background py-16 sm:py-24">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-12">
         <div>
           <div className="overflow-hidden rounded-sm bg-[#eaf2fb]">
-            <img src={chiefDoctor} alt="Симакова Татьяна Геннадьевна" className="h-[480px] w-full object-cover object-center" />
+            <img src={chiefDoctor} alt="Симакова Татьяна Геннадьевна" className="h-[360px] w-full object-cover object-center sm:h-[480px]" />
           </div>
           <div className="mt-4">
             <div className="font-serif text-lg font-semibold text-foreground">Симакова Татьяна Геннадьевна</div>
@@ -243,7 +303,7 @@ function Philosophy() {
         </div>
         <div>
           <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">О клинике</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium leading-tight text-foreground md:text-4xl">
+          <h2 className="mt-3 font-serif text-2xl font-medium leading-tight text-foreground sm:text-3xl md:text-4xl">
             Мы лечим не зубы —<br />мы заботимся о людях
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
@@ -259,7 +319,7 @@ function Philosophy() {
               </li>
             ))}
           </ul>
-          <a href="#cta" className="mt-8 inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
+          <a href="#cta" className="mt-8 inline-flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90 sm:w-auto">
             Записаться на консультацию
           </a>
         </div>
@@ -277,18 +337,25 @@ function Results() {
     { t: "Лечение глубокого кариеса", d: "Композитная реставрация передних зубов", before: c5b, after: c5a },
     { t: "Исправление прикуса", d: "Ортодонтическое лечение элайнерами", before: c6b, after: c6a },
   ];
-  const perView = 2;
+  const [perView, setPerView] = useState(typeof window !== "undefined" && window.innerWidth >= 768 ? 2 : 1);
+  useEffect(() => {
+    const onResize = () => setPerView(window.innerWidth >= 768 ? 2 : 1);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
   const pages = Math.ceil(cases.length / perView);
   const [page, setPage] = useState(0);
+  useEffect(() => { setPage(0); }, [perView]);
   const prev = () => setPage((p) => (p - 1 + pages) % pages);
   const next = () => setPage((p) => (p + 1) % pages);
   const grouped = Array.from({ length: pages }, (_, i) => cases.slice(i * perView, i * perView + perView));
   return (
-    <section className="bg-[var(--navy-deep)] py-24 text-white">
-      <div className="mx-auto max-w-[1200px] px-6">
+    <section className="bg-[var(--navy-deep)] py-16 text-white sm:py-24">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="text-center">
           <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Результаты лечения</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium md:text-4xl">
+          <h2 className="mt-3 font-serif text-2xl font-medium sm:text-3xl md:text-4xl">
             Сложные случаи — наши лучшие результаты
           </h2>
         </div>
@@ -307,7 +374,7 @@ function Results() {
               style={{ transform: `translateX(-${page * 100}%)` }}
             >
               {grouped.map((group, gi) => (
-                <div key={gi} className="grid w-full shrink-0 gap-6 md:grid-cols-2">
+                <div key={gi} className="grid w-full shrink-0 gap-5 px-1 sm:gap-6 md:grid-cols-2">
                   {group.map((c) => (
                     <div key={c.t} className="rounded-sm bg-white/5 p-4 backdrop-blur">
                       <div className="grid grid-cols-2 gap-2">
@@ -362,17 +429,28 @@ function Doctors() {
     { n: "Ухова Екатерина Юрьевна", r: "Стоматолог-терапевт", img: docUhova },
   ];
   const [page, setPage] = useState(0);
-  const perView = 4;
+  const [perView, setPerView] = useState(4);
+  useEffect(() => {
+    const calc = () => {
+      const w = window.innerWidth;
+      return w >= 1024 ? 4 : w >= 640 ? 2 : 1;
+    };
+    const onResize = () => setPerView(calc());
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
   const pages = Math.ceil(docs.length / perView);
+  useEffect(() => { setPage(0); }, [perView]);
   const grouped = Array.from({ length: pages }, (_, i) => docs.slice(i * perView, i * perView + perView));
   const prev = () => setPage((p) => (p - 1 + pages) % pages);
   const next = () => setPage((p) => (p + 1) % pages);
   return (
-    <section id="doctors" className="bg-background py-24">
-      <div className="mx-auto max-w-[1200px] px-6">
+    <section id="doctors" className="bg-background py-16 sm:py-24">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="text-center">
           <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Наши врачи</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium text-foreground md:text-4xl">
+          <h2 className="mt-3 font-serif text-2xl font-medium text-foreground sm:text-3xl md:text-4xl">
             Опыт, которому можно доверять
           </h2>
         </div>
@@ -390,7 +468,7 @@ function Doctors() {
             style={{ transform: `translateX(-${page * 100}%)` }}
           >
             {grouped.map((group, gi) => (
-              <div key={gi} className="grid w-full shrink-0 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div key={gi} className="grid w-full shrink-0 gap-5 px-1 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {group.map((d) => (
                   <div key={d.n} className="rounded-sm border border-border bg-card p-3 transition duration-300 hover:shadow-lg">
                     <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
@@ -429,13 +507,13 @@ function Reviews() {
     { n: "Мария Л.", r: "Ортодонтия", a: a3, t: "Исправляла прикус у Дмитрия Олеговича. Очень довольна результатом и уровнем сервиса в клинике!" },
   ];
   return (
-    <section id="reviews" className="bg-[var(--navy-deep)] py-24 text-white">
-      <div className="mx-auto max-w-[1200px] px-6">
+    <section id="reviews" className="bg-[var(--navy-deep)] py-16 text-white sm:py-24">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="text-center">
           <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Отзывы пациентов</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium md:text-4xl">Нас рекомендуют</h2>
+          <h2 className="mt-3 font-serif text-2xl font-medium sm:text-3xl md:text-4xl">Нас рекомендуют</h2>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 md:grid-cols-3">
           {items.map((r) => (
             <div key={r.n} className="relative rounded-sm border border-white/10 bg-white/[0.04] p-7 backdrop-blur">
               <Quote className="h-7 w-7 text-[var(--gold)]" />
@@ -463,25 +541,25 @@ function Reviews() {
 function CTA() {
   return (
     <section id="cta" className="bg-background">
-      <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-6 py-20 md:grid-cols-[1fr_1fr]">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-8 px-4 py-14 sm:px-6 sm:py-20 md:grid-cols-[1fr_1fr] md:gap-10">
         <div>
-          <h3 className="font-serif text-3xl font-medium leading-tight text-foreground md:text-4xl">
+          <h3 className="font-serif text-2xl font-medium leading-tight text-foreground sm:text-3xl md:text-4xl">
             Сделайте первый шаг<br />к здоровой улыбке уже сегодня
           </h3>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
             Оставьте заявку, мы свяжемся с вами, чтобы подобрать удобное время приёма и ответить на все вопросы.
           </p>
-          <div className="mt-7 flex flex-wrap items-center gap-5">
+          <div className="mt-7 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
             <a href="tel:+74996734401" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
               Записаться на приём
             </a>
-            <a href="#cta" className="text-sm font-medium text-foreground/80 underline-offset-4 hover:text-[var(--gold)] hover:underline">
+            <a href="#cta" className="text-center text-sm font-medium text-foreground/80 underline-offset-4 hover:text-[var(--gold)] hover:underline sm:text-left">
               Получить план лечения
             </a>
           </div>
         </div>
         <div className="overflow-hidden rounded-sm">
-          <img src={hero} alt="Современная клиника" loading="lazy" className="h-[340px] w-full object-cover" />
+          <img src={hero} alt="Современная клиника" loading="lazy" className="h-[220px] w-full object-cover sm:h-[280px] md:h-[340px]" />
         </div>
       </div>
     </section>
@@ -491,7 +569,7 @@ function CTA() {
 function Footer() {
   return (
     <footer id="contacts" className="bg-[var(--navy-deep)] text-white/80">
-      <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 md:grid-cols-3">
+      <div className="mx-auto grid max-w-[1200px] gap-8 px-4 py-12 sm:gap-10 sm:px-6 sm:py-14 md:grid-cols-3">
         <div className="space-y-4 text-sm md:col-span-1">
           <Logo />
           <p className="text-xs leading-relaxed text-white/55">
@@ -512,7 +590,7 @@ function Footer() {
           ))}
         </div>
       </div>
-      <div className="mx-auto max-w-[1200px] px-6 pb-14">
+      <div className="mx-auto max-w-[1200px] px-4 pb-12 sm:px-6 sm:pb-14">
         <div className="relative overflow-hidden rounded-sm border border-white/10">
           <a
             href="https://yandex.ru/maps/org/tsentr_biostomatologii/39640787211/?utm_medium=mapframe&utm_source=maps"
@@ -533,7 +611,7 @@ function Footer() {
           <iframe
             title="Центр Биостоматологии на Яндекс.Картах"
             src="https://yandex.ru/map-widget/v1/?filter=alternate_vertical%3ARequestWindow&ll=37.614529%2C55.789760&mode=search&oid=39640787211&ol=biz&sctx=ZAAAAAgBEAAaKAoSCUHTEiujmUNAERlxAWiU1ElAEhIJBTI7i96p5D8RaoXpew3B2j8iBgABAgMEBSgKOABAr5IHSABqAnJ1nQHNzMw9oAEAqAEAvQEQ18mBwgEGi9KZ1pMBggJW0YbQtdC90YLRgCDQsdC40L4g0YHRgtC%2B0LzQsNGC0L7Qu9C%2B0LPQuNC4INC%2B0LrRgtGP0LHRgNGM0YHQutCw0Y8g0YPQuyAzNiDQvtGC0LfRi9Cy0YuKAgCSAgMxOTOaAgxkZXNrdG9wLW1hcHM%3D&sll=37.614529%2C55.789760&source=serp_navig&sspn=0.012371%2C0.004063&text=%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B1%D0%B8%D0%BE%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8%20%D0%BE%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%2036%20%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%D1%8B&z=17.28"
-            className="h-[280px] w-full"
+            className="h-[220px] w-full sm:h-[280px]"
             loading="lazy"
             allowFullScreen
           />
