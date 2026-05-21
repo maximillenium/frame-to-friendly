@@ -364,7 +364,7 @@ function Doctors() {
   const [page, setPage] = useState(0);
   const perView = 4;
   const pages = Math.ceil(docs.length / perView);
-  const visible = docs.slice(page * perView, page * perView + perView);
+  const grouped = Array.from({ length: pages }, (_, i) => docs.slice(i * perView, i * perView + perView));
   const prev = () => setPage((p) => (p - 1 + pages) % pages);
   const next = () => setPage((p) => (p + 1) % pages);
   return (
@@ -384,19 +384,28 @@ function Doctors() {
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {visible.map((d) => (
-            <div key={d.n} className="rounded-sm border border-border bg-card p-3 transition hover:shadow-lg">
-              <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
-                <img src={d.img} alt={d.n} loading="lazy" className="h-full w-full object-cover object-top" />
+        <div className="mt-8 overflow-hidden">
+          <div
+            className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{ transform: `translateX(-${page * 100}%)` }}
+          >
+            {grouped.map((group, gi) => (
+              <div key={gi} className="grid w-full shrink-0 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {group.map((d) => (
+                  <div key={d.n} className="rounded-sm border border-border bg-card p-3 transition duration-300 hover:shadow-lg">
+                    <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
+                      <img src={d.img} alt={d.n} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-500 hover:scale-[1.03]" />
+                    </div>
+                    <div className="px-2 pb-3 pt-4">
+                      <div className="font-serif text-base font-semibold text-foreground">{d.n}</div>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{d.r}</p>
+                      <a href="#cta" className="mt-3 inline-block text-xs font-medium text-[var(--gold)] hover:underline">Подробнее →</a>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="px-2 pb-3 pt-4">
-                <div className="font-serif text-base font-semibold text-foreground">{d.n}</div>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{d.r}</p>
-                <a href="#cta" className="mt-3 inline-block text-xs font-medium text-[var(--gold)] hover:underline">Подробнее →</a>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         <div className="mt-8 flex items-center justify-center gap-2">
           {Array.from({ length: pages }).map((_, i) => (
@@ -404,7 +413,7 @@ function Doctors() {
               key={i}
               onClick={() => setPage(i)}
               aria-label={`Страница ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-[var(--gold)]" : "w-4 bg-border hover:bg-foreground/40"}`}
+              className={`h-1.5 rounded-full transition-all duration-500 ${i === page ? "w-8 bg-[var(--gold)]" : "w-4 bg-border hover:bg-foreground/40"}`}
             />
           ))}
         </div>
