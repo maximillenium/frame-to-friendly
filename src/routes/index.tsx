@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Phone, MapPin, Mail, Clock, ChevronLeft, ChevronRight, Quote,
-  Microscope, Stethoscope, Sparkles, Award, Users, ShieldCheck,
-  Smile, ScanSearch, Syringe, Crown, Bone, ShieldPlus,
+  Microscope, Stethoscope, Award, Users, ShieldCheck,
+  HeartHandshake, GraduationCap, Check,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import doctor from "@/assets/doctor.jpg";
@@ -92,30 +92,36 @@ function Header() {
 function Hero() {
   return (
     <section className="relative bg-background">
-      <div className="relative mx-auto max-w-[1200px] px-6 pt-10 pb-0">
-        <div className="relative overflow-hidden rounded-sm">
-          <img src={hero} alt="Лечение под микроскопом" width={1600} height={900} className="h-[560px] w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--navy-deep)]/85 via-[var(--navy-deep)]/55 to-transparent" />
-          <div className="absolute inset-0 flex items-center">
-            <div className="max-w-xl px-10 text-white">
-              <span className="inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--gold)]">
-                Современная стоматология
-              </span>
-              <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.15] md:text-5xl">
-                Стоматология для всей семьи
-              </h1>
-              <p className="mt-5 max-w-md text-sm leading-relaxed text-white/80">
-                Лечение под микроскопом и индивидуальный подход для максимального результата и вашего комфорта.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a href="#cta" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-6 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
-                  Записаться на приём
-                </a>
-                <a href="#cta" className="inline-flex items-center justify-center rounded-sm border border-white/40 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur transition-colors hover:bg-white/10">
-                  Получить план лечения
-                </a>
-              </div>
+      <div className="mx-auto max-w-[1200px] px-6 pt-10">
+        <div className="grid overflow-hidden rounded-sm bg-[#eaf2fb] md:grid-cols-[1.05fr_1fr]">
+          <div className="px-10 py-14 md:py-16">
+            <h1 className="font-serif text-3xl font-medium leading-[1.15] text-foreground md:text-[42px]">
+              Восстанавливаем<br />здоровье зубов даже<br />в&nbsp;сложных случаях
+            </h1>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
+              Используем лечение под микроскопом и современный подход для максимального результата и&nbsp;вашего комфорта.
+            </p>
+            <a href="#cta" className="mt-7 inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
+              Записаться на приём
+            </a>
+            <div className="mt-10 grid grid-cols-3 gap-4 text-xs">
+              {[
+                ["Лицензия", "№ ЛО-77-01-019…"],
+                ["Опыт работы", "более 25 лет"],
+                ["Гарантия", "на все виды работ"],
+              ].map(([t, d]) => (
+                <div key={t} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--gold)]" />
+                  <div>
+                    <div className="font-semibold text-foreground">{t}</div>
+                    <div className="text-muted-foreground">{d}</div>
+                  </div>
+                </div>
+              ))}
             </div>
+          </div>
+          <div className="relative min-h-[320px]">
+            <img src={hero} alt="Лечение под микроскопом" className="absolute inset-0 h-full w-full object-cover" />
           </div>
         </div>
       </div>
@@ -151,14 +157,19 @@ function Why() {
 
 function Services() {
   const items = [
-    { icon: ScanSearch, t: "Диагностика", d: "Комплексная диагностика и 3D-сканирование" },
-    { icon: Syringe, t: "Лечение зубов", d: "Терапевтическое лечение любой сложности" },
-    { icon: Microscope, t: "Лечение под микроскопом", d: "Эндодонтия с максимальной точностью" },
-    { icon: Crown, t: "Протезирование", d: "Эстетическое восстановление и протезирование" },
-    { icon: Bone, t: "Имплантация", d: "Надёжная имплантация и восстановление зубов" },
-    { icon: Smile, t: "Ортодонтия", d: "Исправление прикуса и выравнивание зубов" },
-    { icon: Sparkles, t: "Эстетическая стоматология", d: "Отбеливание, виниры, художественная реставрация" },
-    { icon: ShieldPlus, t: "Пародонтология", d: "Лечение дёсен и забота о здоровье пародонта" },
+    { img: sTherapy,    t: "Терапия",                 d: "Лечение кариеса любой сложности, профессиональный подход" },
+    { img: sImplant,    t: "Имплантация",             d: "Восстановление зубов современными системами имплантов" },
+    { img: sOrtho,      t: "Протезирование",          d: "Эстетические коронки, виниры и комплексное протезирование" },
+    { img: sBraces,     t: "Ортодонтия",              d: "Брекеты, элайнеры и исправление прикуса у взрослых и детей" },
+    { img: sSurgery,    t: "Хирургия",                d: "Удаление зубов, синус-лифтинг и подготовка к имплантации" },
+    { img: sHygiene,    t: "Гигиена",                 d: "Профессиональная чистка, Air Flow, отбеливание Zoom" },
+    { img: sKids,       t: "Детская стоматология",    d: "Бережное лечение и адаптация ребёнка к стоматологу" },
+    { img: sTmj,        t: "Лечение дисфункции ВНЧС", d: "Диагностика и лечение нарушений височно-нижнечелюстного сустава" },
+    { img: sAesthetic,  t: "Эстетическая стоматология", d: "Виниры, отбеливание и художественная реставрация улыбки" },
+    { img: sPerio,      t: "Пародонтология",          d: "Комплексное лечение дёсен и профилактика пародонтита" },
+    { img: sCt,         t: "Компьютерная томография 3D", d: "Точная диагностика на современном томографе" },
+    { img: sSaliva,     t: "Исследование слюны",      d: "Лабораторная диагностика и подбор индивидуального плана" },
+    { img: sMicroscope, t: "Лечение под микроскопом", d: "Эндодонтия с максимальной точностью и сохранением тканей" },
   ];
   return (
     <section id="services" className="bg-surface py-24">
@@ -166,20 +177,68 @@ function Services() {
         <div className="text-center">
           <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Услуги</span>
           <h2 className="mt-3 font-serif text-3xl font-medium text-foreground md:text-4xl">
-            Решения для здоровья и красоты вашей улыбки
+            Решения для вашей красоты и здоровья
           </h2>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map(({ icon: Icon, t, d }) => (
-            <div key={t} className="group flex flex-col items-center rounded-sm border border-border bg-card p-7 text-center transition-all hover:border-[var(--gold)]/50 hover:shadow-lg">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--gold)]/30 text-[var(--gold)] transition-colors group-hover:bg-[var(--gold)] group-hover:text-[var(--gold-foreground)]">
-                <Icon className="h-7 w-7" />
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map(({ img, t, d }) => (
+            <div key={t} className="group overflow-hidden rounded-sm border border-border bg-card transition-all hover:border-[var(--gold)]/50 hover:shadow-lg">
+              <div className="aspect-[16/10] overflow-hidden bg-muted">
+                <img src={img} alt={t} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
-              <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">{t}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{d}</p>
-              <a href="#cta" className="mt-4 text-xs font-medium text-[var(--gold)] hover:underline">Подробнее →</a>
+              <div className="p-6">
+                <h3 className="font-serif text-lg font-semibold text-foreground">{t}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{d}</p>
+                <a href="#cta" className="mt-4 inline-block text-xs font-medium text-[var(--gold)] hover:underline">Подробнее →</a>
+              </div>
             </div>
           ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <a href="#cta" className="inline-flex items-center rounded-sm border border-border bg-card px-7 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[var(--gold)]/50 hover:text-[var(--gold)]">
+            Все услуги
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Philosophy() {
+  const points = [
+    "Индивидуальный подход к каждому пациенту",
+    "Лечение под микроскопом с максимальной точностью",
+    "Современное оборудование и материалы",
+    "Команда врачей с опытом более 15 лет",
+    "Гарантия на все виды работ",
+  ];
+  return (
+    <section className="bg-background py-24">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-6 md:grid-cols-2">
+        <div className="overflow-hidden rounded-sm">
+          <img src={doctor} alt="Главный врач клиники" className="h-[420px] w-full object-cover" />
+        </div>
+        <div>
+          <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">О клинике</span>
+          <h2 className="mt-3 font-serif text-3xl font-medium leading-tight text-foreground md:text-4xl">
+            Мы лечим не зубы —<br />мы заботимся о людях
+          </h2>
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            Каждый пациент для нас уникален. Мы внимательно изучаем ситуацию, предлагаем оптимальный план лечения и сопровождаем вас на каждом этапе — от первой консультации до результата.
+          </p>
+          <ul className="mt-7 space-y-3">
+            {points.map((p) => (
+              <li key={p} className="flex items-start gap-3 text-sm text-foreground">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--gold)]/15 text-[var(--gold)]">
+                  <Check className="h-3 w-3" />
+                </span>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="#cta" className="mt-8 inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
+            Записаться на консультацию
+          </a>
         </div>
       </div>
     </section>
@@ -389,6 +448,7 @@ function Index() {
         <Hero />
         <Why />
         <Services />
+        <Philosophy />
         <Results />
         <Doctors />
         <Reviews />
