@@ -472,7 +472,7 @@ function CTA() {
             Оставьте заявку, мы свяжемся с вами, чтобы подобрать удобное время приёма и ответить на все вопросы.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-5">
-            <a href="tel:+74951234567" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
+            <a href="tel:+74996734401" className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90">
               Записаться на приём
             </a>
             <a href="#cta" className="text-sm font-medium text-foreground/80 underline-offset-4 hover:text-[var(--gold)] hover:underline">
