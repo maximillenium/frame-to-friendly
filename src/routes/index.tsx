@@ -491,7 +491,7 @@ function CTA() {
 function Footer() {
   return (
     <footer id="contacts" className="bg-[var(--navy-deep)] text-white/80">
-      <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 md:grid-cols-4">
+      <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 md:grid-cols-3">
         <div className="space-y-4 text-sm md:col-span-1">
           <Logo />
           <p className="text-xs leading-relaxed text-white/55">
@@ -511,12 +511,15 @@ function Footer() {
             <a key={l} href={h} className="block hover:text-[var(--gold)]">{l}</a>
           ))}
         </div>
+      </div>
+      <div className="mx-auto max-w-[1200px] px-6 pb-14">
         <div className="overflow-hidden rounded-sm border border-white/10">
           <iframe
-            title="Карта"
-            src="https://maps.google.com/maps?q=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%2C%2036&t=&z=16&ie=UTF8&iwloc=&output=embed"
-            className="h-40 w-full"
+            title="Центр Биостоматологии на Яндекс.Картах"
+            src="https://yandex.ru/map-widget/v1/?ll=37.606300%2C55.793700&z=17&mode=search&text=%D0%A6%D0%B5%D0%BD%D1%82%D1%80%20%D0%91%D0%B8%D0%BE%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%2036%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&sctx=ZAAAAAgBEAAaKAoSCQAAAAAAAEhAEQAAAAAAAEhAEhIJAAAAAAAAAAAQAAAAAAAAAAA%3D"
+            className="h-[480px] w-full"
             loading="lazy"
+            allowFullScreen
           />
         </div>
       </div>
