@@ -282,21 +282,19 @@ function Results() {
   return (
     <section className="bg-[var(--navy-deep)] py-24 text-white">
       <div className="mx-auto max-w-[1200px] px-6">
-        <div className="flex flex-col items-center gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="text-center md:text-left">
-            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Результаты лечения</span>
-            <h2 className="mt-3 font-serif text-3xl font-medium md:text-4xl">
-              Сложные случаи — наши лучшие результаты
-            </h2>
-          </div>
-          <div className="flex items-center gap-3">
-            <button onClick={prev} aria-label="Назад" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/5 text-white transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]">
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button onClick={next} aria-label="Вперёд" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/5 text-white transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]">
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
+        <div className="text-center">
+          <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">Результаты лечения</span>
+          <h2 className="mt-3 font-serif text-3xl font-medium md:text-4xl">
+            Сложные случаи — наши лучшие результаты
+          </h2>
+        </div>
+        <div className="mt-8 flex items-center justify-center gap-3">
+          <button onClick={prev} aria-label="Назад" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/5 text-white transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]">
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button onClick={next} aria-label="Вперёд" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/5 text-white transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]">
+            <ChevronRight className="h-5 w-5" />
+          </button>
         </div>
         <div className="mt-12">
           <div className="grid gap-6 md:grid-cols-2">
