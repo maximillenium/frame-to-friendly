@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Phone, MapPin, Mail, Clock, ChevronLeft, ChevronRight, Quote,
   Microscope, Stethoscope, Award, Users, ShieldCheck,
@@ -6,6 +7,7 @@ import {
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import doctor from "@/assets/doctor.jpg";
+import chiefDoctor from "@/assets/chief-doctor.png";
 import sTherapy from "@/assets/service-therapy.jpg";
 import sImplant from "@/assets/service-implant.jpg";
 import sOrtho from "@/assets/service-ortho.jpg";
@@ -171,6 +173,8 @@ function Services() {
     { img: sSaliva,     t: "Исследование слюны",      d: "Лабораторная диагностика и подбор индивидуального плана" },
     { img: sMicroscope, t: "Лечение под микроскопом", d: "Эндодонтия с максимальной точностью и сохранением тканей" },
   ];
+  const [expanded, setExpanded] = useState(false);
+  const visible = expanded ? items : items.slice(0, 6);
   return (
     <section id="services" className="bg-surface py-24">
       <div className="mx-auto max-w-[1200px] px-6">
@@ -181,7 +185,7 @@ function Services() {
           </h2>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map(({ img, t, d }) => (
+          {visible.map(({ img, t, d }) => (
             <div key={t} className="group overflow-hidden rounded-sm border border-border bg-card transition-all hover:border-[var(--gold)]/50 hover:shadow-lg">
               <div className="aspect-[16/10] overflow-hidden bg-muted">
                 <img src={img} alt={t} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -195,9 +199,13 @@ function Services() {
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <a href="#cta" className="inline-flex items-center rounded-sm border border-border bg-card px-7 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[var(--gold)]/50 hover:text-[var(--gold)]">
-            Все услуги
-          </a>
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            className="inline-flex items-center rounded-sm border border-border bg-card px-7 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[var(--gold)]/50 hover:text-[var(--gold)]"
+          >
+            {expanded ? "Свернуть" : `Показать все услуги (${items.length})`}
+          </button>
         </div>
       </div>
     </section>
@@ -215,8 +223,14 @@ function Philosophy() {
   return (
     <section className="bg-background py-24">
       <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-6 md:grid-cols-2">
-        <div className="overflow-hidden rounded-sm">
-          <img src={doctor} alt="Главный врач клиники" className="h-[420px] w-full object-cover" />
+        <div>
+          <div className="overflow-hidden rounded-sm bg-[#eaf2fb]">
+            <img src={chiefDoctor} alt="Симакова Татьяна Геннадьевна" className="h-[480px] w-full object-cover object-top" />
+          </div>
+          <div className="mt-4">
+            <div className="font-serif text-lg font-semibold text-foreground">Симакова Татьяна Геннадьевна</div>
+            <div className="mt-1 text-xs text-muted-foreground">Главный врач, доктор медицинских наук</div>
+          </div>
         </div>
         <div>
           <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">О клинике</span>
