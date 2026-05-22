@@ -119,43 +119,68 @@ function Header() {
           </button>
         </div>
       </div>
-      {open && (
-        <div className="fixed inset-0 z-[60] bg-background lg:hidden">
-          <div className="flex h-16 items-center justify-between border-b border-border/60 px-4">
+      <div
+        className={`fixed inset-0 z-[60] lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+        aria-hidden={!open}
+      >
+        <div
+          onClick={() => setOpen(false)}
+          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
+        />
+        <aside
+          className={`absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-background shadow-2xl transition-transform duration-300 ease-out ${open ? "translate-x-0" : "translate-x-full"}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Меню"
+        >
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-border/60 px-4">
             <Logo />
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Закрыть меню"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border text-foreground"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
-          <nav className="flex flex-col px-4 py-6">
+          <nav className="flex-1 overflow-y-auto px-2 py-4">
             {links.map(([l, h]) => (
               <a
                 key={l}
                 href={h}
                 onClick={() => setOpen(false)}
-                className="border-b border-border/50 py-4 text-base font-medium text-foreground hover:text-[var(--gold)]"
+                className="flex items-center justify-between rounded-md px-3 py-3.5 text-[15px] font-medium text-foreground/90 transition-colors hover:bg-[var(--gold)]/10 hover:text-[var(--gold)]"
               >
-                {l}
+                <span>{l}</span>
+                <span className="text-[var(--gold)]/60">→</span>
               </a>
             ))}
+          </nav>
+          <div className="shrink-0 border-t border-border/60 bg-muted/30 px-4 py-5 space-y-3">
+            <a
+              href="tel:+74996734401"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 rounded-md px-2 py-1"
+            >
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)]">
+                <Phone className="h-4 w-4" />
+              </span>
+              <span>
+                <span className="block text-sm font-semibold text-foreground">+7 (499) 673-44-01</span>
+                <span className="block text-[11px] text-muted-foreground">Пн–Сб с 9:00 до 21:00</span>
+              </span>
+            </a>
             <a
               href="#cta"
               onClick={() => setOpen(false)}
-              className="mt-6 inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-3 text-sm font-medium text-[var(--gold-foreground)]"
+              className="flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
             >
               Записаться на приём
             </a>
-            <a href="tel:+74996734401" className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-foreground">
-              <Phone className="h-4 w-4 text-[var(--gold)]" /> +7 (499) 673-44-01
-            </a>
-          </nav>
-        </div>
-      )}
+          </div>
+        </aside>
+      </div>
     </header>
   );
 }
