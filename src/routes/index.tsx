@@ -9,6 +9,7 @@ import {
   Users,
   ShieldCheck,
   Check,
+  ExternalLink,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import chiefDoctor from "@/assets/chief-doctor.png";
