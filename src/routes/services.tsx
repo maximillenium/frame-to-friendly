@@ -9,6 +9,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { PageHero } from "@/components/site/Layout";
+import { BookingDialog } from "@/components/site/BookingDialog";
 import sTherapy from "@/assets/service-therapy.jpg";
 import sImplant from "@/assets/service-implant.jpg";
 import sOrtho from "@/assets/service-ortho.jpg";
@@ -225,6 +226,12 @@ const SERVICES: Service[] = [
 
 function ServicesPage() {
   const [active, setActive] = useState<Service | null>(null);
+  const [booking, setBooking] = useState<string | undefined>(undefined);
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const openBooking = (svc?: string) => {
+    setBooking(svc);
+    setBookingOpen(true);
+  };
   return (
     <>
       <PageHero
@@ -270,7 +277,7 @@ function ServicesPage() {
       </section>
 
       <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
-        <DialogContent className="max-h-[90vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto rounded-sm p-0 sm:rounded-sm">
+        <DialogContent className="max-h-[90vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto rounded-sm p-0 sm:rounded-sm [&>button.absolute]:hidden">
           {active && (
             <>
               <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted">
@@ -279,9 +286,9 @@ function ServicesPage() {
                   type="button"
                   onClick={() => setActive(null)}
                   aria-label="Закрыть"
-                  className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-background/90 text-foreground shadow backdrop-blur transition hover:bg-background"
+                  className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-background text-foreground shadow-lg ring-1 ring-border transition hover:bg-background/90"
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-5 w-5" />
                 </button>
               </div>
               <div className="px-6 pb-8 pt-6 sm:px-8">
@@ -307,13 +314,18 @@ function ServicesPage() {
                   ))}
                 </ul>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <a
-                    href="tel:+74996734401"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const svc = active.t;
+                      setActive(null);
+                      openBooking(svc);
+                    }}
                     className="inline-flex items-center justify-center gap-2 rounded-sm bg-[var(--gold)] px-6 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
                   >
                     <Phone className="h-4 w-4" />
                     Записаться на приём
-                  </a>
+                  </button>
                   <span className="text-xs text-muted-foreground">
                     +7 (499) 673-44-01 · Пн–Сб с 9:00 до 21:00
                   </span>
@@ -323,6 +335,8 @@ function ServicesPage() {
           )}
         </DialogContent>
       </Dialog>
+
+      <BookingDialog open={bookingOpen} onOpenChange={setBookingOpen} service={booking} />
     </>
   );
 }

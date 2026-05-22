@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Phone, Mail, MapPin, Clock, Menu, X } from "lucide-react";
 import logoImg from "@/assets/logo.png";
+import { BookingDialog } from "@/components/site/BookingDialog";
 
 export const NAV_LINKS: { label: string; to: string }[] = [
   { label: "Главная", to: "/" },
@@ -21,6 +22,7 @@ export function Logo() {
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -59,12 +61,13 @@ export function SiteHeader() {
           >
             <Phone className="h-4 w-4" />
           </a>
-          <a
-            href="tel:+74996734401"
+          <button
+            type="button"
+            onClick={() => setBookingOpen(true)}
             className="hidden sm:inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-2.5 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
           >
             Записаться<span className="hidden md:inline">&nbsp;на приём</span>
-          </a>
+          </button>
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -133,16 +136,20 @@ export function SiteHeader() {
                 </span>
               </span>
             </a>
-            <a
-              href="tel:+74996734401"
-              onClick={() => setOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                setBookingOpen(true);
+              }}
               className="flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
             >
               Записаться на приём
-            </a>
+            </button>
           </div>
         </div>
       )}
+      <BookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
     </header>
   );
 }
