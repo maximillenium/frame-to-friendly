@@ -141,50 +141,9 @@ function Why() {
 }
 
 function Services() {
-  const items = [
-    { img: sTherapy, t: "Терапия", d: "Лечение кариеса любой сложности, профессиональный подход" },
-    { img: sImplant, t: "Имплантация", d: "Восстановление зубов современными системами имплантов" },
-    {
-      img: sOrtho,
-      t: "Протезирование",
-      d: "Эстетические коронки, виниры и комплексное протезирование",
-    },
-    {
-      img: sBraces,
-      t: "Ортодонтия",
-      d: "Брекеты, элайнеры и исправление прикуса у взрослых и детей",
-    },
-    { img: sSurgery, t: "Хирургия", d: "Удаление зубов, синус-лифтинг и подготовка к имплантации" },
-    { img: sHygiene, t: "Гигиена", d: "Профессиональная чистка, Air Flow, отбеливание Zoom" },
-    {
-      img: sKids,
-      t: "Детская стоматология",
-      d: "Бережное лечение и адаптация ребёнка к стоматологу",
-    },
-    {
-      img: sTmj,
-      t: "Лечение дисфункции ВНЧС",
-      d: "Диагностика и лечение нарушений височно-нижнечелюстного сустава",
-    },
-    {
-      img: sAesthetic,
-      t: "Эстетическая стоматология",
-      d: "Виниры, отбеливание и художественная реставрация улыбки",
-    },
-    { img: sPerio, t: "Пародонтология", d: "Комплексное лечение дёсен и профилактика пародонтита" },
-    { img: sCt, t: "Компьютерная томография 3D", d: "Точная диагностика на современном томографе" },
-    {
-      img: sSaliva,
-      t: "Исследование слюны",
-      d: "Лабораторная диагностика и подбор индивидуального плана",
-    },
-    {
-      img: sMicroscope,
-      t: "Лечение под микроскопом",
-      d: "Эндодонтия с максимальной точностью и сохранением тканей",
-    },
-  ];
+  const items = SERVICES;
   const [expanded, setExpanded] = useState(false);
+  const [active, setActive] = useState<Service | null>(null);
   const visible = expanded ? items : items.slice(0, 6);
   return (
     <section id="services" className="bg-surface py-16 sm:py-24">
@@ -198,30 +157,29 @@ function Services() {
           </h2>
         </div>
         <div className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-          {visible.map(({ img, t, d }) => (
-            <div
-              key={t}
-              className="group overflow-hidden rounded-sm border border-border bg-card transition-all hover:border-[var(--gold)]/50 hover:shadow-lg"
+          {visible.map((s) => (
+            <button
+              key={s.t}
+              type="button"
+              onClick={() => setActive(s)}
+              className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card text-left transition-all hover:border-[var(--gold)]/50 hover:shadow-lg"
             >
               <div className="aspect-[16/10] overflow-hidden bg-muted">
                 <img
-                  src={img}
-                  alt={t}
+                  src={s.img}
+                  alt={s.t}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-serif text-lg font-semibold text-foreground">{t}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{d}</p>
-                <a
-                  href="#cta"
-                  className="mt-4 inline-block text-xs font-medium text-[var(--gold)] hover:underline"
-                >
+                <h3 className="font-serif text-lg font-semibold text-foreground">{s.t}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.short}</p>
+                <span className="mt-4 inline-block text-xs font-medium text-[var(--gold)] group-hover:underline">
                   Подробнее →
-                </a>
+                </span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
         <div className="mt-10 flex justify-center">
@@ -234,6 +192,7 @@ function Services() {
           </button>
         </div>
       </div>
+      <ServiceDetailDialog service={active} onClose={() => setActive(null)} />
     </section>
   );
 }
