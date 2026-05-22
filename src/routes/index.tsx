@@ -9,6 +9,7 @@ import {
   Users,
   ShieldCheck,
   Check,
+  ExternalLink,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import chiefDoctor from "@/assets/chief-doctor.png";
@@ -594,13 +595,15 @@ function Reviews() {
             </div>
           ))}
         </div>
-        <div className="mt-10 flex justify-center gap-2">
-          {[0, 1, 2, 3].map((i) => (
-            <span
-              key={i}
-              className={`h-1.5 rounded-full transition-all ${i === 1 ? "w-8 bg-[var(--gold)]" : "w-1.5 bg-white/30"}`}
-            />
-          ))}
+        <div className="mt-10 flex justify-center">
+          <a
+            href="https://yandex.ru/maps/-/CPwkf4NQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-sm border border-white/20 bg-white/5 px-6 py-2.5 text-sm font-medium text-white transition hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--gold-foreground)]"
+          >
+            Все отзывы <ExternalLink className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>
