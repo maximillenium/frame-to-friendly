@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Clock, Navigation } from "lucide-react";
 import { PageHero } from "@/components/site/Layout";
+import { useBooking } from "@/components/site/BookingContext";
 
 export const Route = createFileRoute("/contacts")({
   component: ContactsPage,
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/contacts")({
 });
 
 function ContactsPage() {
+  const booking = useBooking();
   const items = [
     {
       icon: Phone,
