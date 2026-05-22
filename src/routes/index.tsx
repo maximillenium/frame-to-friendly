@@ -119,7 +119,6 @@ function Header() {
           </button>
         </div>
       </div>
-      {open && (
       <div
         className={`fixed inset-0 z-[60] lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
         aria-hidden={!open}
