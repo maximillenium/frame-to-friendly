@@ -58,6 +58,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Hero() {
+  const booking = useBooking();
   return (
     <section className="relative bg-background">
       <div className="mx-auto max-w-[1200px] px-4 pt-6 sm:px-6 sm:pt-10">
@@ -74,12 +75,13 @@ function Hero() {
               Используем лечение под микроскопом и современный подход для максимального результата
               и&nbsp;вашего комфорта.
             </p>
-            <a
-              href="#cta"
+            <button
+              type="button"
+              onClick={() => booking.open()}
               className="mt-6 inline-flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90 sm:mt-7 sm:w-auto"
             >
               Записаться на приём
-            </a>
+            </button>
             <div className="mt-8 grid grid-cols-1 gap-3 text-xs sm:mt-10 sm:grid-cols-3 sm:gap-4">
               {[
                 ["Лицензия", "№ ЛО-77-01-019…"],
@@ -198,6 +200,7 @@ function Services() {
 }
 
 function Philosophy() {
+  const booking = useBooking();
   const points = [
     "Индивидуальный подход к каждому пациенту",
     "Лечение под микроскопом с максимальной точностью",
@@ -247,12 +250,13 @@ function Philosophy() {
               </li>
             ))}
           </ul>
-          <a
-            href="#cta"
+          <button
+            type="button"
+            onClick={() => booking.open()}
             className="mt-8 inline-flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90 sm:w-auto"
           >
             Записаться на консультацию
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -605,6 +609,7 @@ function Reviews() {
 }
 
 function CTA() {
+  const booking = useBooking();
   return (
     <section id="cta" className="bg-background">
       <div className="mx-auto grid max-w-[1200px] items-center gap-8 px-4 py-14 sm:px-6 sm:py-20 md:grid-cols-[1fr_1fr] md:gap-10">
@@ -618,18 +623,20 @@ function CTA() {
             все вопросы.
           </p>
           <div className="mt-7 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
-            <a
-              href="tel:+74996734401"
+            <button
+              type="button"
+              onClick={() => booking.open()}
               className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
             >
               Записаться на приём
-            </a>
-            <a
-              href="#cta"
+            </button>
+            <button
+              type="button"
+              onClick={() => booking.open()}
               className="text-center text-sm font-medium text-foreground/80 underline-offset-4 hover:text-[var(--gold)] hover:underline sm:text-left"
             >
               Получить план лечения
-            </a>
+            </button>
           </div>
         </div>
         <div className="overflow-hidden rounded-sm">
