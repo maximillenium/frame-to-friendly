@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  Phone,
   ChevronLeft,
   ChevronRight,
   Quote,
@@ -24,19 +23,9 @@ import docNagornaya from "@/assets/doctors/nagornaya.png";
 import docTabakova from "@/assets/doctors/tabakova.jpg";
 import docSaribekyan from "@/assets/doctors/saribekyan.jpg";
 import docUhova from "@/assets/doctors/uhova.jpg";
-import sTherapy from "@/assets/service-therapy.jpg";
-import sImplant from "@/assets/service-implant.jpg";
-import sOrtho from "@/assets/service-ortho.jpg";
-import sBraces from "@/assets/service-braces.jpg";
-import sSurgery from "@/assets/service-surgery.jpg";
-import sHygiene from "@/assets/service-hygiene.jpg";
-import sKids from "@/assets/service-kids.jpg";
-import sTmj from "@/assets/service-tmj.jpg";
-import sAesthetic from "@/assets/service-aesthetic.jpg";
-import sPerio from "@/assets/service-perio.jpg";
-import sSaliva from "@/assets/service-saliva.jpg";
-import sMicroscope from "@/assets/service-microscope.jpg";
-import sCt from "@/assets/service-ct.jpg";
+import { SERVICES, type Service } from "@/lib/services-data";
+import { ServiceDetailDialog } from "@/components/site/ServiceDetailDialog";
+import { useBooking } from "@/components/site/BookingContext";
 import a1 from "@/assets/avatar1.jpg";
 import a2 from "@/assets/avatar2.jpg";
 import a3 from "@/assets/avatar3.jpg";
@@ -68,6 +57,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Hero() {
+  const booking = useBooking();
   return (
     <section className="relative bg-background">
       <div className="mx-auto max-w-[1200px] px-4 pt-6 sm:px-6 sm:pt-10">
@@ -84,12 +74,13 @@ function Hero() {
               Используем лечение под микроскопом и современный подход для максимального результата
               и&nbsp;вашего комфорта.
             </p>
-            <a
-              href="#cta"
+            <button
+              type="button"
+              onClick={() => booking.open()}
               className="mt-6 inline-flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90 sm:mt-7 sm:w-auto"
             >
               Записаться на приём
-            </a>
+            </button>
             <div className="mt-8 grid grid-cols-1 gap-3 text-xs sm:mt-10 sm:grid-cols-3 sm:gap-4">
               {[
                 ["Лицензия", "№ ЛО-77-01-019…"],
@@ -151,50 +142,9 @@ function Why() {
 }
 
 function Services() {
-  const items = [
-    { img: sTherapy, t: "Терапия", d: "Лечение кариеса любой сложности, профессиональный подход" },
-    { img: sImplant, t: "Имплантация", d: "Восстановление зубов современными системами имплантов" },
-    {
-      img: sOrtho,
-      t: "Протезирование",
-      d: "Эстетические коронки, виниры и комплексное протезирование",
-    },
-    {
-      img: sBraces,
-      t: "Ортодонтия",
-      d: "Брекеты, элайнеры и исправление прикуса у взрослых и детей",
-    },
-    { img: sSurgery, t: "Хирургия", d: "Удаление зубов, синус-лифтинг и подготовка к имплантации" },
-    { img: sHygiene, t: "Гигиена", d: "Профессиональная чистка, Air Flow, отбеливание Zoom" },
-    {
-      img: sKids,
-      t: "Детская стоматология",
-      d: "Бережное лечение и адаптация ребёнка к стоматологу",
-    },
-    {
-      img: sTmj,
-      t: "Лечение дисфункции ВНЧС",
-      d: "Диагностика и лечение нарушений височно-нижнечелюстного сустава",
-    },
-    {
-      img: sAesthetic,
-      t: "Эстетическая стоматология",
-      d: "Виниры, отбеливание и художественная реставрация улыбки",
-    },
-    { img: sPerio, t: "Пародонтология", d: "Комплексное лечение дёсен и профилактика пародонтита" },
-    { img: sCt, t: "Компьютерная томография 3D", d: "Точная диагностика на современном томографе" },
-    {
-      img: sSaliva,
-      t: "Исследование слюны",
-      d: "Лабораторная диагностика и подбор индивидуального плана",
-    },
-    {
-      img: sMicroscope,
-      t: "Лечение под микроскопом",
-      d: "Эндодонтия с максимальной точностью и сохранением тканей",
-    },
-  ];
+  const items = SERVICES;
   const [expanded, setExpanded] = useState(false);
+  const [active, setActive] = useState<Service | null>(null);
   const visible = expanded ? items : items.slice(0, 6);
   return (
     <section id="services" className="bg-surface py-16 sm:py-24">
@@ -208,30 +158,29 @@ function Services() {
           </h2>
         </div>
         <div className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-          {visible.map(({ img, t, d }) => (
-            <div
-              key={t}
-              className="group overflow-hidden rounded-sm border border-border bg-card transition-all hover:border-[var(--gold)]/50 hover:shadow-lg"
+          {visible.map((s) => (
+            <button
+              key={s.t}
+              type="button"
+              onClick={() => setActive(s)}
+              className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card text-left transition-all hover:border-[var(--gold)]/50 hover:shadow-lg"
             >
               <div className="aspect-[16/10] overflow-hidden bg-muted">
                 <img
-                  src={img}
-                  alt={t}
+                  src={s.img}
+                  alt={s.t}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-serif text-lg font-semibold text-foreground">{t}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{d}</p>
-                <a
-                  href="#cta"
-                  className="mt-4 inline-block text-xs font-medium text-[var(--gold)] hover:underline"
-                >
+                <h3 className="font-serif text-lg font-semibold text-foreground">{s.t}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.short}</p>
+                <span className="mt-4 inline-block text-xs font-medium text-[var(--gold)] group-hover:underline">
                   Подробнее →
-                </a>
+                </span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
         <div className="mt-10 flex justify-center">
@@ -244,11 +193,13 @@ function Services() {
           </button>
         </div>
       </div>
+      <ServiceDetailDialog service={active} onClose={() => setActive(null)} />
     </section>
   );
 }
 
 function Philosophy() {
+  const booking = useBooking();
   const points = [
     "Индивидуальный подход к каждому пациенту",
     "Лечение под микроскопом с максимальной точностью",
@@ -298,12 +249,13 @@ function Philosophy() {
               </li>
             ))}
           </ul>
-          <a
-            href="#cta"
+          <button
+            type="button"
+            onClick={() => booking.open()}
             className="mt-8 inline-flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90 sm:w-auto"
           >
             Записаться на консультацию
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -656,6 +608,7 @@ function Reviews() {
 }
 
 function CTA() {
+  const booking = useBooking();
   return (
     <section id="cta" className="bg-background">
       <div className="mx-auto grid max-w-[1200px] items-center gap-8 px-4 py-14 sm:px-6 sm:py-20 md:grid-cols-[1fr_1fr] md:gap-10">
@@ -669,18 +622,20 @@ function CTA() {
             все вопросы.
           </p>
           <div className="mt-7 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
-            <a
-              href="tel:+74996734401"
+            <button
+              type="button"
+              onClick={() => booking.open()}
               className="inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
             >
               Записаться на приём
-            </a>
-            <a
-              href="#cta"
+            </button>
+            <button
+              type="button"
+              onClick={() => booking.open()}
               className="text-center text-sm font-medium text-foreground/80 underline-offset-4 hover:text-[var(--gold)] hover:underline sm:text-left"
             >
               Получить план лечения
-            </a>
+            </button>
           </div>
         </div>
         <div className="overflow-hidden rounded-sm">

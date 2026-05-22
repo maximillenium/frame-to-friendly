@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Phone, Mail, MapPin, Clock, Menu, X } from "lucide-react";
 import logoImg from "@/assets/logo.png";
-import { BookingDialog } from "@/components/site/BookingDialog";
+import { useBooking } from "@/components/site/BookingContext";
 
 export const NAV_LINKS: { label: string; to: string }[] = [
   { label: "Главная", to: "/" },
@@ -22,7 +22,7 @@ export function Logo() {
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [bookingOpen, setBookingOpen] = useState(false);
+  const booking = useBooking();
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -63,7 +63,7 @@ export function SiteHeader() {
           </a>
           <button
             type="button"
-            onClick={() => setBookingOpen(true)}
+            onClick={() => booking.open()}
             className="hidden sm:inline-flex items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-2.5 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
           >
             Записаться<span className="hidden md:inline">&nbsp;на приём</span>
@@ -140,7 +140,7 @@ export function SiteHeader() {
               type="button"
               onClick={() => {
                 setOpen(false);
-                setBookingOpen(true);
+                booking.open();
               }}
               className="flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-5 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
             >
@@ -149,7 +149,6 @@ export function SiteHeader() {
           </div>
         </div>
       )}
-      <BookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
     </header>
   );
 }

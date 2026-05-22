@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter } from "@/components/site/Layout";
 import { Toaster } from "@/components/ui/sonner";
+import { BookingProvider } from "@/components/site/BookingContext";
 
 function NotFoundComponent() {
   return (
@@ -122,14 +123,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-background">
-        <SiteHeader />
-        <main>
-          <Outlet />
-        </main>
-        <SiteFooter />
-        <Toaster />
-      </div>
+      <BookingProvider>
+        <div className="min-h-screen bg-background">
+          <SiteHeader />
+          <main>
+            <Outlet />
+          </main>
+          <SiteFooter />
+          <Toaster />
+        </div>
+      </BookingProvider>
     </QueryClientProvider>
   );
 }

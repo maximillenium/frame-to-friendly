@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Microscope, ShieldCheck, Users, Award, GraduationCap, HeartHandshake, Stethoscope } from "lucide-react";
 import { PageHero } from "@/components/site/Layout";
+import { useBooking } from "@/components/site/BookingContext";
 import chiefDoctor from "@/assets/chief-doctor.png";
 import hero from "@/assets/hero.jpg";
 
@@ -25,6 +26,7 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const booking = useBooking();
   const stats = [
     { icon: Award, t: "С 2008 года", d: "успешной работы" },
     { icon: Users, t: "20 000+", d: "довольных пациентов" },
@@ -182,12 +184,13 @@ function AboutPage() {
                 </li>
               ))}
             </ul>
-            <a
-              href="tel:+74996734401"
+            <button
+              type="button"
+              onClick={() => booking.open()}
               className="mt-8 inline-flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90 sm:w-auto"
             >
               Записаться на консультацию
-            </a>
+            </button>
           </div>
           <div className="overflow-hidden rounded-sm">
             <img

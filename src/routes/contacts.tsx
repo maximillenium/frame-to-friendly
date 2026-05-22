@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Clock, Navigation } from "lucide-react";
 import { PageHero } from "@/components/site/Layout";
+import { useBooking } from "@/components/site/BookingContext";
 
 export const Route = createFileRoute("/contacts")({
   component: ContactsPage,
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/contacts")({
 });
 
 function ContactsPage() {
+  const booking = useBooking();
   const items = [
     {
       icon: Phone,
@@ -134,13 +136,14 @@ function ContactsPage() {
               </p>
             </div>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="tel:+74996734401"
+              <button
+                type="button"
+                onClick={() => booking.open()}
                 className="inline-flex items-center justify-center gap-2 rounded-sm bg-[var(--gold)] px-6 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90"
               >
                 <Phone className="h-4 w-4" />
                 Записаться на приём
-              </a>
+              </button>
               <a
                 href="https://yandex.ru/maps/org/tsentr_biostomatologii/39640787211/"
                 target="_blank"
