@@ -2,26 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Phone,
-  MapPin,
-  Mail,
-  Clock,
   ChevronLeft,
   ChevronRight,
   Quote,
   Microscope,
-  Stethoscope,
   Award,
   Users,
   ShieldCheck,
-  HeartHandshake,
-  GraduationCap,
   Check,
-  Menu,
-  X,
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import chiefDoctor from "@/assets/chief-doctor.png";
-import logoImg from "@/assets/logo.png";
 import docSimakova from "@/assets/doctors/simakova.jpg";
 import docKirienko from "@/assets/doctors/kirienko.png";
 import docGajduk from "@/assets/doctors/gajduk.jpg";
