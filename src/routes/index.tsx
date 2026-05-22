@@ -360,7 +360,7 @@ function Results() {
     { t: "Лечение глубокого кариеса", d: "Композитная реставрация передних зубов", before: c5b, after: c5a },
     { t: "Исправление прикуса", d: "Ортодонтическое лечение элайнерами", before: c6b, after: c6a },
   ];
-  const [perView, setPerView] = useState(typeof window !== "undefined" && window.innerWidth >= 768 ? 2 : 1);
+  const [perView, setPerView] = useState(1);
   useEffect(() => {
     const onResize = () => setPerView(window.innerWidth >= 768 ? 2 : 1);
     onResize();
