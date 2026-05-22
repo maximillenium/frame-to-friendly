@@ -119,49 +119,47 @@ function Header() {
           </button>
         </div>
       </div>
-      <div
-        className={`fixed inset-0 z-[60] lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
-        aria-hidden={!open}
-      >
+      {open && (
         <div
-          onClick={() => setOpen(false)}
-          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
-        />
-        <aside
-          className={`absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-background shadow-2xl transition-transform duration-300 ease-out ${open ? "translate-x-0" : "translate-x-full"}`}
+          className="fixed inset-0 z-[999] flex min-h-dvh w-screen flex-col overflow-hidden bg-background lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Меню"
         >
-          <div className="flex h-16 shrink-0 items-center justify-between border-b border-border/60 px-4">
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-border bg-background px-4 shadow-sm">
             <Logo />
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Закрыть меню"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
-          <nav className="flex-1 overflow-y-auto px-2 py-4">
-            {links.map(([l, h]) => (
-              <a
-                key={l}
-                href={h}
-                onClick={() => setOpen(false)}
-                className="flex items-center justify-between rounded-md px-3 py-3.5 text-[15px] font-medium text-foreground/90 transition-colors hover:bg-[var(--gold)]/10 hover:text-[var(--gold)]"
-              >
-                <span>{l}</span>
-                <span className="text-[var(--gold)]/60">→</span>
-              </a>
-            ))}
+          <nav className="flex-1 overflow-y-auto bg-background px-4 py-5">
+            <div className="space-y-2">
+              {links.map(([l, h], index) => (
+                <a
+                  key={l}
+                  href={h}
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-14 items-center justify-between rounded-sm border border-border bg-card px-4 text-base font-semibold text-foreground shadow-sm"
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="text-xs font-medium text-[var(--gold)]">0{index + 1}</span>
+                    {l}
+                  </span>
+                  <span className="text-xl leading-none text-[var(--gold)]">→</span>
+                </a>
+              ))}
+            </div>
           </nav>
-          <div className="shrink-0 border-t border-border/60 bg-muted/30 px-4 py-5 space-y-3">
+          <div className="shrink-0 space-y-3 border-t border-border bg-background px-4 py-5 shadow-[0_-8px_24px_rgba(0,0,0,0.06)]">
             <a
               href="tel:+74996734401"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 rounded-md px-2 py-1"
+              className="flex items-center gap-3 rounded-sm border border-border bg-card p-3"
             >
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)]">
                 <Phone className="h-4 w-4" />
@@ -179,8 +177,8 @@ function Header() {
               Записаться на приём
             </a>
           </div>
-        </aside>
-      </div>
+        </div>
+      )}
     </header>
   );
 }
