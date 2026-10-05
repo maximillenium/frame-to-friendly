@@ -97,7 +97,7 @@ function Hero() {
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--gold)]" />
                   <div>
                     <div className="font-semibold text-foreground">{t}</div>
-                    <div className="break-words text-muted-foreground">{d}</div>
+                    <div className="break-words whitespace-pre-line text-muted-foreground">{d}</div>
                   </div>
                 </div>
               ))}
