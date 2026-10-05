@@ -89,7 +89,7 @@ function Hero() {
             </button>
             <div className="mt-8 grid grid-cols-1 gap-3 text-xs sm:mt-10 sm:grid-cols-3 sm:gap-4">
               {[
-                ["Лицензия", "Л041-01137-77/00360298"],
+                ["Лицензия", "Л041-01137-77\n77/00360298"],
                 ["Команда", "Врачи экспертного уровня"],
                 ["Гарантия", "на все виды работ"],
               ].map(([t, d]) => (
@@ -97,7 +97,7 @@ function Hero() {
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--gold)]" />
                   <div>
                     <div className="font-semibold text-foreground">{t}</div>
-                    <div className="break-words text-muted-foreground">{d}</div>
+                    <div className="break-words whitespace-pre-line text-muted-foreground">{d}</div>
                   </div>
                 </div>
               ))}
