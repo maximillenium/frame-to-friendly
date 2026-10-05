@@ -21,6 +21,8 @@ export const Route = createFileRoute("/about")({
         content:
           "Профессиональная стоматологическая помощь любого уровня сложности. Команда врачей с учёными степенями, современное оборудование, безболезненное лечение.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

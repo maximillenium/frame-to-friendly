@@ -19,6 +19,8 @@ export const Route = createFileRoute("/contacts")({
         content:
           "Адрес, телефон и схема проезда. Запишитесь на приём — Пн–Сб с 9:00 до 21:00.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
