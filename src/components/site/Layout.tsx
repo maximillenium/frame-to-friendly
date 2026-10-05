@@ -177,10 +177,10 @@ export function SiteFooter() {
             <Mail className="h-4 w-4 text-[var(--gold)]" />
             <span>info@cbstom.ru</span>
           </a>
-          <div className="flex items-start gap-2">
+          <a href="https://yandex.ru/maps/?rtext=~55.789760%2C37.614529&rtt=auto" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 hover:text-[var(--gold)]">
             <MapPin className="mt-0.5 h-4 w-4 text-[var(--gold)]" />
             <span>127473, Москва, ул. Октябрьская, 36 (м. Марьина Роща)</span>
-          </div>
+          </a>
           <div className="flex items-start gap-2">
             <Clock className="mt-0.5 h-4 w-4 text-[var(--gold)]" />
             <span>Пн–Сб с 9:00 до 21:00, Вс — выходной</span>
