@@ -20,6 +20,8 @@ export const Route = createFileRoute("/services")({
         content:
           "От профессиональной чистки до имплантации и комплексного протезирования. Современные технологии, опытные врачи, безболезненное лечение.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

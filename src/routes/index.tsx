@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import chiefDoctor from "@/assets/chief-doctor.png";
+import consultationPhoto from "@/assets/clinic-consultation.jpg";
 import docSimakova from "@/assets/doctors/simakova.jpg";
 import docKirienko from "@/assets/doctors/kirienko.png";
 import docGajduk from "@/assets/doctors/gajduk.jpg";
@@ -27,9 +28,9 @@ import docUhova from "@/assets/doctors/uhova.jpg";
 import { SERVICES, type Service } from "@/lib/services-data";
 import { ServiceDetailDialog } from "@/components/site/ServiceDetailDialog";
 import { useBooking } from "@/components/site/BookingContext";
-import a1 from "@/assets/avatar1.jpg";
-import a2 from "@/assets/avatar2.jpg";
-import a3 from "@/assets/avatar3.jpg";
+import reviewer1 from "@/assets/reviewers/reviewer-1.asset.json";
+import reviewer2 from "@/assets/reviewers/reviewer-2.asset.json";
+import reviewer3 from "@/assets/reviewers/reviewer-3.asset.json";
 import c1b from "@/assets/case1-before.jpg";
 import c1a from "@/assets/case1-after.jpg";
 import c2b from "@/assets/case2-before.jpg";
@@ -53,6 +54,10 @@ export const Route = createFileRoute("/")({
         content:
           "Москва, ул. Октябрьская, 36. Лечение, имплантация и эстетическая стоматология. Запись: +7 (499) 673-44-01.",
       },
+      { property: "og:title", content: "Центр БиоСтоматологии — стоматология в Москве" },
+      { property: "og:description", content: "Лечение, имплантация и эстетическая стоматология на Октябрьской, 36. Запись: +7 (499) 673-44-01." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
@@ -84,15 +89,15 @@ function Hero() {
             </button>
             <div className="mt-8 grid grid-cols-1 gap-3 text-xs sm:mt-10 sm:grid-cols-3 sm:gap-4">
               {[
-                ["Лицензия", "№ ЛО-77-01-019…"],
-                ["Опыт работы", "более 25 лет"],
+                ["Лицензия", "Л041-01137-77/00360298"],
+                ["Команда", "Врачи экспертного уровня"],
                 ["Гарантия", "на все виды работ"],
               ].map(([t, d]) => (
-                <div key={t} className="flex items-start gap-2">
+                <div key={t} className="flex min-w-0 items-start gap-2">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--gold)]" />
                   <div>
                     <div className="font-semibold text-foreground">{t}</div>
-                    <div className="text-muted-foreground">{d}</div>
+                    <div className="break-words text-muted-foreground">{d}</div>
                   </div>
                 </div>
               ))}
@@ -125,7 +130,7 @@ function Why() {
     >
       <div className="grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-border bg-border bg-card shadow-xl sm:grid-cols-2 lg:grid-cols-4">
         {items.map(({ icon: Icon, t, d }) => (
-          <div key={t} className="flex items-center gap-4 bg-card px-5 py-5 sm:px-6 sm:py-7">
+          <div key={t} className="flex items-center justify-center gap-4 bg-card px-5 py-5 sm:px-6 sm:py-7">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--gold)]/30 text-[var(--gold)]">
               <Icon className="h-6 w-6" />
             </div>
@@ -200,9 +205,9 @@ function Services() {
 }
 
 function Philosophy() {
-  const booking = useBooking();
   const points = [
     "Индивидуальный подход к каждому пациенту",
+    "Диагностика с использованием компьютерного томографа",
     "Лечение под микроскопом с максимальной точностью",
     "Современное оборудование и материалы",
     "Команда врачей с опытом более 15 лет",
@@ -224,7 +229,7 @@ function Philosophy() {
               Симакова Татьяна Геннадьевна
             </div>
             <div className="mt-1 text-xs text-muted-foreground">
-              Главный врач, доктор медицинских наук
+              Генеральный директор, доктор медицинских наук
             </div>
           </div>
         </div>
@@ -250,13 +255,6 @@ function Philosophy() {
               </li>
             ))}
           </ul>
-          <button
-            type="button"
-            onClick={() => booking.open()}
-            className="mt-8 inline-flex w-full items-center justify-center rounded-sm bg-[var(--gold)] px-7 py-3 text-sm font-medium text-[var(--gold-foreground)] transition-opacity hover:opacity-90 sm:w-auto"
-          >
-            Записаться на консультацию
-          </button>
         </div>
       </div>
     </section>
@@ -404,12 +402,12 @@ function Doctors() {
   const docs = [
     {
       n: "Симакова Татьяна Геннадьевна",
-      r: "Главный врач, доктор медицинских наук",
+      r: "Генеральный директор, доктор медицинских наук",
       img: docSimakova,
     },
     {
       n: "Кириенко Виктория Викторовна",
-      r: "Стоматолог-терапевт, кандидат медицинских наук",
+      r: "Главный врач, стоматолог-терапевт, кандидат медицинских наук",
       img: docKirienko,
     },
     {
@@ -460,7 +458,7 @@ function Doctors() {
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="text-center">
           <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--gold)]">
-            Наши врачи
+            Наши специалисты
           </span>
           <h2 className="mt-3 font-serif text-2xl font-medium text-foreground sm:text-3xl md:text-4xl">
             Опыт, которому можно доверять
@@ -541,22 +539,25 @@ function Doctors() {
 function Reviews() {
   const items = [
     {
-      n: "Екатерина С.",
-      r: "Лечение под микроскопом",
-      a: a1,
-      t: "Обратилась в клинику со сложной ситуацией. Спасибо врачам за профессионализм, внимательное отношение и потрясающий результат!",
+      n: "Анастасия",
+      r: "Отзыв на Яндекс Картах",
+      a: reviewer1.url,
+      t: "Была у врача Елизаветы Эдуардовны Пожарской на приеме по поводу коррекции и реставрации переднего зуба. Меня проконсультировали, так как я думала, что нужно другую процедуру делать. Но в итоге мне аккуратно все отшлифовали, еще и состав специальный нанесли от кариеса. Елизавета очень внимательная, вежливая. В общем рекомендую!",
+      link: "https://yandex.com/maps/user/h592mnw4reamhjtbnyw6429jpg",
     },
     {
-      n: "Андрей К.",
-      r: "Имплантация и протезирование",
-      a: a2,
-      t: "Делал имплантацию и протезирование. Всё прошло отлично, без боли и стресса. Рекомендую клинику всем знакомым.",
+      n: "Artem",
+      r: "Отзыв на Яндекс Картах",
+      a: reviewer2.url,
+      t: "Был на лечении у Елизаветы Эдуардовны, все прошло комфортно и безболезненно. Очень понравилась включенность доктора, подробный рассказ о проблеме и о плане лечения. Во время самого лечения меня постоянно спрашивали о самочувствии. Плюсом отмечу, что лишних услуг (как это сейчас часто бывает) не навязывал ни доктор, ни администратор. Однозначно буду обращаться еще.",
+      link: "https://yandex.com/maps/user/98dqk2j5qe1kyzetqqg1n6txdr",
     },
     {
-      n: "Мария Л.",
-      r: "Ортодонтия",
-      a: a3,
-      t: "Исправляла прикус у Дмитрия Олеговича. Очень довольна результатом и уровнем сервиса в клинике!",
+      n: "Лилия Исхакова",
+      r: "Отзыв на Яндекс Картах",
+      a: reviewer3.url,
+      t: "Единственное место где я лечу зубы уже 15 лет. Вся семья туда ходит и всё родственники. Спасали зубы, которые в обычных зубных пытались просто удалить. Процесс дорогой, но зубы того стоят. Хочу дополнить отзыв…. Ну очень не хватает экрана с кино, скучно и нудно сидеть по 1-2 часа в кресле. Очень прошу повесить)",
+      link: "https://yandex.com/maps/user/3w1y4cb3f629hd6km5x780jxv4",
     },
   ];
   return (
@@ -578,7 +579,7 @@ function Reviews() {
             >
               <Quote className="h-7 w-7 text-[var(--gold)]" />
               <p className="mt-4 text-sm leading-relaxed text-white/85">{r.t}</p>
-              <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
+              <a href={r.link} target="_blank" rel="noopener noreferrer" className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4 hover:text-[var(--gold)]">
                 <img
                   src={r.a}
                   alt={r.n}
@@ -591,7 +592,7 @@ function Reviews() {
                   <div className="font-serif text-sm font-semibold">{r.n}</div>
                   <div className="text-[11px] text-white/55">{r.r}</div>
                 </div>
-              </div>
+              </a>
             </div>
           ))}
         </div>
@@ -632,20 +633,15 @@ function CTA() {
             >
               Записаться на приём
             </button>
-            <button
-              type="button"
-              onClick={() => booking.open()}
-              className="text-center text-sm font-medium text-foreground/80 underline-offset-4 hover:text-[var(--gold)] hover:underline sm:text-left"
-            >
-              Получить план лечения
-            </button>
           </div>
         </div>
         <div className="overflow-hidden rounded-sm">
           <img
-            src={hero}
-            alt="Современная клиника"
+            src={consultationPhoto}
+            alt="Врач объясняет пациенту результаты диагностики"
             loading="lazy"
+            width={1280}
+            height={960}
             className="h-[220px] w-full object-cover sm:h-[280px] md:h-[340px]"
           />
         </div>

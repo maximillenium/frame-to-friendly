@@ -18,6 +18,8 @@ export const Route = createFileRoute("/prices")({
         content:
           "Прозрачные цены на стоматологические услуги. Полный прейскурант доступен в регистратуре клиники.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

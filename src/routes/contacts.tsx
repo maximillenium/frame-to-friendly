@@ -19,6 +19,8 @@ export const Route = createFileRoute("/contacts")({
         content:
           "Адрес, телефон и схема проезда. Запишитесь на приём — Пн–Сб с 9:00 до 21:00.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
@@ -42,7 +44,7 @@ function ContactsPage() {
       icon: MapPin,
       label: "Адрес",
       value: "127473, Москва, ул. Октябрьская, 36",
-      href: "https://yandex.ru/maps/org/tsentr_biostomatologii/39640787211/",
+      href: "https://yandex.ru/maps/?rtext=~55.789760%2C37.614529&rtt=auto",
     },
     {
       icon: Clock,
@@ -145,7 +147,7 @@ function ContactsPage() {
                 Записаться на приём
               </button>
               <a
-                href="https://yandex.ru/maps/org/tsentr_biostomatologii/39640787211/"
+                href="https://yandex.ru/maps/?rtext=~55.789760%2C37.614529&rtt=auto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-sm border border-border bg-card px-6 py-3 text-sm font-medium text-foreground transition hover:border-[var(--gold)]/50 hover:text-[var(--gold)]"
