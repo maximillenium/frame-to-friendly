@@ -130,7 +130,7 @@ function Why() {
     >
       <div className="grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-border bg-border bg-card shadow-xl sm:grid-cols-2 lg:grid-cols-4">
         {items.map(({ icon: Icon, t, d }) => (
-          <div key={t} className="flex items-center justify-center gap-4 bg-card px-5 py-5 sm:px-6 sm:py-7">
+          <div key={t} className="flex flex-col items-center justify-center gap-3 text-center bg-card px-5 py-5 sm:flex-row sm:text-left sm:gap-4 sm:px-6 sm:py-7">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--gold)]/30 text-[var(--gold)]">
               <Icon className="h-6 w-6" />
             </div>
