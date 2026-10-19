@@ -28,9 +28,9 @@ import docUhova from "@/assets/doctors/uhova.jpg";
 import { SERVICES, type Service } from "@/lib/services-data";
 import { ServiceDetailDialog } from "@/components/site/ServiceDetailDialog";
 import { useBooking } from "@/components/site/BookingContext";
-import reviewer1 from "@/assets/reviewers/reviewer-1.asset.json";
-import reviewer2 from "@/assets/reviewers/reviewer-2.asset.json";
-import reviewer3 from "@/assets/reviewers/reviewer-3.asset.json";
+import reviewerKonstantin from "@/assets/reviewers/reviewer-4.jpg";
+import reviewerIndira from "@/assets/reviewers/reviewer-5.jpg";
+import reviewerAnastasia from "@/assets/reviewers/reviewer-6.jpg";
 import c1b from "@/assets/case1-before.jpg";
 import c1a from "@/assets/case1-after.jpg";
 import c2b from "@/assets/case2-before.jpg";
@@ -539,25 +539,25 @@ function Doctors() {
 function Reviews() {
   const items = [
     {
-      n: "Анастасия",
+      n: "Константин Лисецкий",
       r: "Отзыв на Яндекс Картах",
-      a: reviewer1.url,
-      t: "Была у врача Елизаветы Эдуардовны Пожарской на приеме по поводу коррекции и реставрации переднего зуба. Меня проконсультировали, так как я думала, что нужно другую процедуру делать. Но в итоге мне аккуратно все отшлифовали, еще и состав специальный нанесли от кариеса. Елизавета очень внимательная, вежливая. В общем рекомендую!",
-      link: "https://yandex.com/maps/user/h592mnw4reamhjtbnyw6429jpg",
+      a: reviewerKonstantin,
+      t: "Огромная благодарность врачам и медперсоналу клиники!!! Внимательность. Доброжелательность. Профессионализм. Особый талант и умение услышать пациента! И подарить ему спокойствие и уверенность! Виктория Викторовна, Инна Александровна, Илья Михайлович, ещё раз огромное вам спасибо!!!",
+      link: "https://yandex.ru/navi/org/39640787211/reviews?reviews%5BpublicId%5D=64uae2eu4d4j9ypzbv1ckc7eug&utm_source=my_review&si=rnvph04rc4vx14y12ee88t0j0r",
     },
     {
-      n: "Artem",
+      n: "Индира У.",
       r: "Отзыв на Яндекс Картах",
-      a: reviewer2.url,
-      t: "Был на лечении у Елизаветы Эдуардовны, все прошло комфортно и безболезненно. Очень понравилась включенность доктора, подробный рассказ о проблеме и о плане лечения. Во время самого лечения меня постоянно спрашивали о самочувствии. Плюсом отмечу, что лишних услуг (как это сейчас часто бывает) не навязывал ни доктор, ни администратор. Однозначно буду обращаться еще.",
-      link: "https://yandex.com/maps/user/98dqk2j5qe1kyzetqqg1n6txdr",
+      a: reviewerIndira,
+      t: "Хочу сказать огромное спасибо стоматологу — хирургу имплантологу Нагорной Надежде Николаевне! Я очень боялась удалять зубы, но у врача лёгкая рука: удалила зуб мудрости быстро и безболезненно, врач очень вежливый, уколы делает совсем не больно! Так же мне доктор Нагорная установила имплантат — это выше всяких похвал! Теперь буду ходить только к этому врачу! Надежда Николаевна, спасибо Вам большое!!!",
+      link: "https://yandex.ru/navi/org/39640787211/reviews?reviews%5BpublicId%5D=cynaqc21z2z18brbvutea1mx7r&utm_source=my_review&si=rnvph04rc4vx14y12ee88t0j0r",
     },
     {
-      n: "Лилия Исхакова",
+      n: "Anastasia K.",
       r: "Отзыв на Яндекс Картах",
-      a: reviewer3.url,
-      t: "Единственное место где я лечу зубы уже 15 лет. Вся семья туда ходит и всё родственники. Спасали зубы, которые в обычных зубных пытались просто удалить. Процесс дорогой, но зубы того стоят. Хочу дополнить отзыв…. Ну очень не хватает экрана с кино, скучно и нудно сидеть по 1-2 часа в кресле. Очень прошу повесить)",
-      link: "https://yandex.com/maps/user/3w1y4cb3f629hd6km5x780jxv4",
+      a: reviewerAnastasia,
+      t: "Здесь работает отличный коллектив профессионалов! Мы обращаемся уже тремя поколениями к Виктории Викторовне. Есть все узкие специалисты (пластика дёсен, пародонтолог, ортодонт, ортопед, и нами любимый стоматолог). Если не хочется переделывать по несколько раз одни и те же зубки, то лучше сразу обращаться сюда. Дорого, но надёжно.",
+      link: "https://yandex.ru/navi/org/39640787211/reviews?reviews%5BpublicId%5D=kht5n5qtu76674371m7ay4huww&utm_source=my_review&si=rnvph04rc4vx14y12ee88t0j0r",
     },
   ];
   return (
